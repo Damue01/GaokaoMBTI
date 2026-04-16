@@ -205,20 +205,40 @@ async function sharePoster() {
   posterVisible.value = true
   await nextTick()
 
-  // 等待 QR code 渲染完成
-  await new Promise(r => setTimeout(r, 300))
+  // 等待 QR code 和字体渲染完成
+  await new Promise(r => setTimeout(r, 600))
 
   try {
     const el = posterRef.value?.$el
-    if (!el) return
+    if (!el) {
+      alert('海报组件加载失败，请重试')
+      return
+    }
+
+    // 临时移入可见区域以确保浏览器渲染
+    const origLeft = el.style.left
+    el.style.left = '0'
+    el.style.opacity = '0'
+    el.style.pointerEvents = 'none'
+    await new Promise(r => setTimeout(r, 100))
+
     const canvas = await html2canvas(el, {
       backgroundColor: '#ffffff',
       scale: 2,
-      useCORS: true
+      useCORS: true,
+      allowTaint: true,
+      logging: false
     })
+
+    // 还原隐藏
+    el.style.left = origLeft
+    el.style.opacity = ''
+    el.style.pointerEvents = ''
+
     posterSrc.value = canvas.toDataURL('image/png')
   } catch (e) {
     console.error('海报生成失败', e)
+    alert('海报生成失败，请尝试截图分享')
   } finally {
     posterVisible.value = false
   }

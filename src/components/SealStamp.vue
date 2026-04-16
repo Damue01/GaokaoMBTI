@@ -21,7 +21,7 @@
       </defs>
 
       <!-- 所有元素应用破损滤镜 -->
-      <g filter="url(#stamp-texture)">
+      <g :filter="noFilter ? undefined : 'url(#stamp-texture)'">
         <!-- 外圈粗线 -->
         <circle cx="100" cy="100" r="92" fill="none" stroke="#c82a2a" stroke-width="5" />
         <!-- 内圈细线 -->
@@ -53,6 +53,10 @@ defineProps({
     required: true
   },
   animate: {
+    type: Boolean,
+    default: false
+  },
+  noFilter: {
     type: Boolean,
     default: false
   }

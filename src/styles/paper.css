@@ -151,4 +151,35 @@
     padding: 20px 16px;
     box-shadow: none;
   }
+
+  .exam-info {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .exam-info__row {
+    justify-content: center;
+  }
+
+  .exam-info__underline {
+    min-width: 100px;
+    flex: 1;
+    max-width: 180px;
+  }
+
+  .exam-info__underline--ticket {
+    min-width: 140px;
+    max-width: 220px;
+  }
+
+  .exam-header__year {
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+
+  .exam-header__title {
+    font-size: 26px;
+    letter-spacing: 4px;
+  }
 }

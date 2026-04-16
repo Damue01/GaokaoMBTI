@@ -2,7 +2,7 @@
 
 /* ������Ⱦ��������Ļ�ⲻ�ɼ������� html2canvas ��ͼ??*/
 .poster {
-  position: fixed;
+  position: absolute;
   left: -9999px;
   top: 0;
   width: 375px;

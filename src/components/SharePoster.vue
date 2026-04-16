@@ -40,7 +40,7 @@
     <div class="poster__footer">
       <div class="poster__dept">{{ result.department || '绝密综合评价中心' }}</div>
       <div class="poster__date">{{ chineseDate }}</div>
-      <SealStamp :text="result.name" style="right: -40px; bottom: -30px; width: 120px; height: 120px;" />
+      <SealStamp :text="result.name" no-filter style="right: -40px; bottom: -30px; width: 120px; height: 120px;" />
     </div>
 
     <!-- 底部验证区 -->
