@@ -1,28 +1,32 @@
 <div align="center">
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                                                                  │
-│              ★ 绝密 ★ 启用前                                     │
-│                                                                  │
-│         2026年普通高等学校招生全国统一考试                            │
-│                                                                  │
-│                  命 理 综 合                                      │
-│                                                                  │
-│          本试卷共 20 题，共 100 分。考试时长 30 分钟。                │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-```
+# ★ 绝密 ★ 启用前
+
+## 2026年普通高等学校招生全国统一考试
+
+### 命 理 综 合
+
+本试卷共 20 题，共 100 分。考试时长 30 分钟。
+
+---
 
 **一场改变命运的考试，一份来自平行宇宙的录取通知书。**
 
-[![在线体验](https://img.shields.io/badge/%E5%BC%80%E5%A7%8B%E7%AD%94%E9%A2%98-www.gaokaombti.com-b8342b?style=for-the-badge)](https://www.gaokaombti.com)
-&nbsp;
-[![Vue 3](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Pinia](https://img.shields.io/badge/Pinia-Store-ffd859?logo=pinia&logoColor=333)](https://pinia.vuejs.org/)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel)](https://www.gaokaombti.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+<br>
+
+[![开始答题](https://img.shields.io/badge/%E5%BC%80%E5%A7%8B%E7%AD%94%E9%A2%98-www.gaokaombti.com-b8342b?style=for-the-badge)](https://www.gaokaombti.com)
+
+<br>
+
+[![Vue 3](https://img.shields.io/badge/Vue-3-4FC08D?style=flat-square&logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+&ensp;
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+&ensp;
+[![Pinia](https://img.shields.io/badge/Pinia-Store-ffd859?style=flat-square&logo=pinia&logoColor=333)](https://pinia.vuejs.org/)
+&ensp;
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000?style=flat-square&logo=vercel)](https://www.gaokaombti.com)
+&ensp;
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
 </div>
 
