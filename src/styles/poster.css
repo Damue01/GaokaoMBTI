@@ -92,7 +92,7 @@
   font-size: 12px;
   color: var(--exam-black);
   text-align: center;
-  font-family: var(--font-song);
+  font-family: var(--font-cinzel);
   opacity: 0.58;
   letter-spacing: 0.4px;
   margin-top: 0;
@@ -247,7 +247,7 @@
   color: var(--exam-black);
 }
 .poster__verify-url {
-  font-family: var(--font-cinzel);
+  font-family: var(--font-garamond);
   font-size: 11px;
   color: #c0272b;
   letter-spacing: 0.5px;

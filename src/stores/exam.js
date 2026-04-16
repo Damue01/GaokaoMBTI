@@ -1,5 +1,22 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+
+const STORAGE_KEY = 'gaokao-exam-state'
+
+function saveState(state) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  } catch { /* quota exceeded – silently ignore */ }
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
 
 export const useExamStore = defineStore('exam', () => {
   // 三阶段视图: start / exam / result
@@ -37,6 +54,9 @@ export const useExamStore = defineStore('exam', () => {
 
   // 是否因空闲超时触发 fallback 结果
   const isFallback = ref(false)
+
+  // 信封是否已被拆开（用于区分首次进入和刷新恢复）
+  const envelopeSeen = ref(false)
 
   // 当前题目对象
   const currentItem = computed(() => runSequence.value[currentIndex.value] || null)
@@ -76,8 +96,43 @@ export const useExamStore = defineStore('exam', () => {
     gateQuestions.value = qRes.gate_questions
     results.value = rRes
 
-    // 初始化运行序列（仅常规题）
-    runSequence.value = qRes.questions.map(q => ({ type: 'normal', id: q.id }))
+    // 尝试从 localStorage 恢复状态
+    const saved = loadState()
+    if (saved) {
+      view.value = saved.view || 'start'
+      playerName.value = saved.playerName || ''
+      ticketNumber.value = saved.ticketNumber || ticketNumber.value
+      answers.value = saved.answers || {}
+      gateAnswers.value = saved.gateAnswers || {}
+      currentIndex.value = saved.currentIndex || 0
+      runSequence.value = saved.runSequence || qRes.questions.map(q => ({ type: 'normal', id: q.id }))
+      g1Inserted.value = saved.g1Inserted || false
+      g2Inserted.value = saved.g2Inserted || false
+      isFallback.value = saved.isFallback || false
+      envelopeSeen.value = saved.envelopeSeen || false
+    } else {
+      // 初始化运行序列（仅常规题）
+      runSequence.value = qRes.questions.map(q => ({ type: 'normal', id: q.id }))
+    }
+
+    // 监听关键状态变化，自动持久化
+    watch(
+      () => ({
+        view: view.value,
+        playerName: playerName.value,
+        ticketNumber: ticketNumber.value,
+        answers: answers.value,
+        gateAnswers: gateAnswers.value,
+        currentIndex: currentIndex.value,
+        runSequence: runSequence.value,
+        g1Inserted: g1Inserted.value,
+        g2Inserted: g2Inserted.value,
+        isFallback: isFallback.value,
+        envelopeSeen: envelopeSeen.value
+      }),
+      (state) => { saveState(state) },
+      { deep: true }
+    )
   }
 
   // 按题目 ID 作答（滚动模式使用）
@@ -191,6 +246,7 @@ export const useExamStore = defineStore('exam', () => {
 
   // 重新开始
   function restart() {
+    localStorage.removeItem(STORAGE_KEY)
     view.value = 'start'
     answers.value = {}
     gateAnswers.value = {}
@@ -200,6 +256,7 @@ export const useExamStore = defineStore('exam', () => {
     g1Inserted.value = false
     g2Inserted.value = false
     isFallback.value = false
+    envelopeSeen.value = false
     runSequence.value = questions.value.map(q => ({ type: 'normal', id: q.id }))
   }
 
@@ -207,7 +264,7 @@ export const useExamStore = defineStore('exam', () => {
     view, questions, gateQuestions, results,
     answers, gateAnswers, currentIndex, playerName, ticketNumber,
     runSequence, currentItem, totalCount, isFinished, progress, answeredCount,
-    isFallback,
+    isFallback, envelopeSeen,
     getQuestionObj, init, answer, answerQuestion, startExam, restart, triggerFallback, calcDimensionTotal
   }
 })

@@ -28,7 +28,22 @@
       {{ result.english_name }}
     </div>
     <div class="notice__content notice-stagger" style="--stagger: 3">
-      <p class="notice__greeting">{{ greetingText }}：</p>
+      <p class="notice__greeting">
+        <template v-if="isEditingName">
+          <input
+            ref="editNameInput"
+            class="notice__name-input"
+            :value="playerName"
+            placeholder="请输入姓名"
+            maxlength="20"
+            @blur="finishEditName"
+            @keydown.enter="$event.target.blur()"
+          />同学：
+        </template>
+        <template v-else>
+          <span class="notice__name-editable" @click="startEditName" title="点击修改姓名">{{ greetingText }}</span>：
+        </template>
+      </p>
       <p class="notice__formal">
         经本校二〇二六年度招生委员会综合评审，你已被
         <strong>{{ result.name }} · {{ result.department || '绝密综合评价中心' }}</strong>
@@ -55,7 +70,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import SealStamp from './SealStamp.vue'
 
 const props = defineProps({
@@ -64,6 +79,22 @@ const props = defineProps({
   animate: { type: Boolean, default: false },
   playerName: { type: String, default: '' }
 })
+
+const emit = defineEmits(['update:playerName'])
+
+const isEditingName = ref(false)
+const editNameInput = ref(null)
+
+function startEditName() {
+  isEditingName.value = true
+  setTimeout(() => editNameInput.value?.focus(), 0)
+}
+
+function finishEditName(e) {
+  const newName = (e.target.value || '').trim()
+  emit('update:playerName', newName)
+  isEditingName.value = false
+}
 
 const greetingText = computed(() => {
   return props.playerName ? `${props.playerName}同学` : '优秀的同学'

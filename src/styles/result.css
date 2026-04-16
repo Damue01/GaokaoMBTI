@@ -97,6 +97,28 @@
   margin-bottom: 12px;
 }
 
+/* 姓名 inline edit */
+.notice__name-editable {
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(209, 37, 37, 0.35);
+  transition: border-color 0.15s;
+}
+.notice__name-editable:hover {
+  border-bottom-color: #d12525;
+}
+.notice__name-input {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: var(--font-song);
+  color: var(--exam-black);
+  border: none;
+  border-bottom: 1.5px solid #d12525;
+  background: transparent;
+  outline: none;
+  width: 6em;
+  padding: 0 2px;
+}
+
 .notice__summary {
   font-size: 15px;
   font-family: var(--font-song);

@@ -2,7 +2,7 @@
   <div class="paper view-enter-active">
     <ExamHeader
       show-info
-      :editable="store.view === 'start'"
+      editable
       :ticket-number="store.ticketNumber"
       v-model="playerNameLocal"
     />

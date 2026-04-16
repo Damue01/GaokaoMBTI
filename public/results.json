@@ -43,19 +43,19 @@
         "S2": 2,
         "S3": 2,
         "E1": 2,
-        "E2": 1,
-        "E3": 1,
+        "E2": 2,
+        "E3": 2,
         "A1": 2,
         "A2": 2,
         "A3": 2,
         "Ac1": 2,
         "Ac2": 2,
-        "Ac3": 2,
-        "So1": 1,
-        "So2": 3,
+        "Ac3": 1,
+        "So1": 2,
+        "So2": 4,
         "So3": 2
       },
-      "summary": "你深谙量子力学的终极奥义：观测即坍缩，不查即永生。只要你彻底断网、拉黑班主任、逃离人类社会，你的成绩就永远处于满分和零分的叠加态中。本校表彰你凭一己之力对抗宇宙因果律的勇气，现特招你入校，准备好和薛定谔的那只猫做室友了吗？",
+      "summary": "你深谙量子力学的终极奥义：观测即坍缩，不查即永生。面对可能令人破防的现实，你的第一反应永远是切断一切信息源、进行物理级的主动失联。只要你拒绝接收世界发来的信号，你的成绩就永远处于满分和零分的叠加态中。本校表彰你凭一己之力对抗宇宙因果律、把掩耳盗铃玩成高阶物理学的勇气，现特招你入校。准备好和薛定谔的那只猫做室友了吗？",
       "social_tag": "#只要我不查分挂科的就不是我",
       "english_name": "CoCo-lumbia University (CC)",
       "english_department": "Dept. of Physical Disconnection & Schrödinger's Grade Mgmt",
@@ -64,31 +64,31 @@
     },
     {
       "id": 2,
-      "name": "皇家戏精学院",
-      "department": "紧绷松弛感表演专系",
+      "name": "京华大学",
+      "department": "末名书院",
       "coordinates": {
         "S1": 2,
         "S2": 4,
         "S3": 2,
-        "E1": 1,
+        "E1": 2,
         "E2": 2,
         "E3": 2,
         "A1": 2,
         "A2": 2,
-        "A3": 4,
+        "A3": 2,
         "Ac1": 2,
         "Ac2": 2,
-        "Ac3": 2,
+        "Ac3": 4,
         "So1": 2,
         "So2": 2,
-        "So3": 4
+        "So3": 1
       },
-      "summary": "你精湛的演技不仅骗过了监考老师，甚至差点骗过了你自己。不管是风轻云淡的冷笑，还是交卷后那句“昨天根本没看书”的凄凉，你都能一秒切入奥斯卡级防御状态。本系急需你这种泰山崩于前而嘴梆硬、心里慌成狗表面稳如老狗的特级演员。",
-      "social_tag": "#嘴比答题卡还要硬",
-      "english_name": "Royal Academy of Drama-queen Art (RADA)",
-      "english_department": "Dept. of Tension-Relaxation Performance Arts",
-      "envelope_warning": "WARNING: EXTREME ACTING HAZARD",
-      "envelope_code": "RADQA-26-FALL"
+      "summary": "别人在考场里崩溃或祈祷，而你只是按时醒来，带好文具，坐进座位。发卷，审题，作答。没有焦虑，也没有自我感动，你只是像过去的每一天一样，平静地把复杂的题目拆解回最基础的常识。在你眼里，高分从来不是奇迹或恩赐，仅仅是你把事情做对之后，一个自然而然的结果。能把旁人眼里的兵荒马乱，过得像一日三餐般平淡如水，这正是你走到这里的理由。收拾好行李吧，下一段求知岁月也不过是换个安静的房间。欢迎你，6字班新生。",
+      "social_tag": "#没有奇迹，本该如此",
+      "english_name": "Tsingking University (TKU)",
+      "english_department": "Moming College (Class 6)",
+      "envelope_warning": "STATUS: ABSOLUTE RATIONALITY",
+      "envelope_code": "TKU-26-FALL"
     },
     {
       "id": 3,
@@ -96,8 +96,8 @@
       "department": "亚太区高压灵长类行为学",
       "coordinates": {
         "S1": 2,
-        "S2": 1,
-        "S3": 2,
+        "S2": 2,
+        "S3": 1,
         "E1": 2,
         "E2": 2,
         "E3": 2,
@@ -123,7 +123,7 @@
       "name": "斯坦佛大学",
       "department": "电子木鱼声学与就地圆寂系",
       "coordinates": {
-        "S1": 1,
+        "S1": 2,
         "S2": 2,
         "S3": 4,
         "E1": 2,
@@ -131,15 +131,15 @@
         "E3": 2,
         "A1": 2,
         "A2": 2,
-        "A3": 2,
+        "A3": 4,
         "Ac1": 1,
         "Ac2": 2,
         "Ac3": 2,
-        "So1": 1,
+        "So1": 2,
         "So2": 2,
         "So3": 2
       },
-      "summary": "你的脑电波里写满了普度众生的慈悲。当周围的凡人还在为了一分两分互相倾轧、抓耳挠腮时，你已经完成了三维世界的精神脱壳，甚至在草稿纸上敲起了电子木鱼。本校决定免试录取，毕竟你对分数的无视，已经达到了物理意义上的立地成佛。",
+      "summary": "你的脑电波里写满了普度众生的慈悲。当周围的凡人还在为了一分两分互相倾轧、抓耳挠腮时，你已经完成了三维世界的精神脱壳，甚至在草稿纸上敲起了电子木鱼。本校决定免试录取，毕竟你对分数绝对的无视，以及看着题目犹如看天书的空灵感，已经达到了物理意义上的立地成佛。",
       "social_tag": "#卷王都在流泪而我已经睡着",
       "english_name": "Stan-Fo University (Stanfo)",
       "english_department": "Dept. of E-Woodenfish Acoustics & In-Situ Nirvana",
@@ -149,7 +149,7 @@
     {
       "id": 5,
       "name": "加州大学波及你分校",
-      "department": "考后创伤同化与拉人下水工程",
+      "department": "考场应激创伤与拉人下水工程系",
       "coordinates": {
         "S1": 2,
         "S2": 2,
@@ -164,10 +164,10 @@
         "Ac2": 2,
         "Ac3": 2,
         "So1": 4,
-        "So2": 1,
+        "So2": 2,
         "So3": 2
       },
-      "summary": "既然自己淋了考场的暴雨，你就要把全班同学的伞都撕烂！你极度擅长在死局中发动同归于尽式的连环追问：“你最后一题选什么？你居然选A？完了你肯定算错了！”直到所有人被你波及，开始集体怀疑人生。反人类心理学急需你这种擅长战损共沉沦的顶尖人才。",
+      "summary": "你在高压环境中展现出了极具破坏性的情绪传染天赋：每当你陷入焦虑、挣扎或自我怀疑时，这股精神风暴绝不会仅在你内部消化。既然自己淋了考场的暴雨，你就要把全班同学的伞都撕烂！你极度擅长在死局中发动同归于尽式的连环追问与情绪倾泻，直到所有人被你精准波及，开始集体破防并怀疑人生。反人类心理学急需你这种擅长战损共沉沦的顶尖人才。",
       "social_tag": "#我考砸了但这必须波及你",
       "english_name": "University of California, Bojini (UCB)",
       "english_department": "Dept. of After-Exam Trauma Engineering",
@@ -178,6 +178,7 @@
   "gate_results": {
     "地球Online·BUG修复局": {
       "name": "地球Online·BUG修复局",
+      "department": "系统异常收容与玩家行为矫正处",
       "english_name": "Earth Online Bug Fix Bureau (EOBFB)",
       "english_department": "Dept. of System Anomaly Containment",
       "envelope_warning": "WARNING: DATA OVERFLOW",
@@ -187,6 +188,7 @@
     },
     "亚太区水豚行为模式研究所": {
       "name": "亚太区水豚行为模式研究所",
+      "department": "哺乳动物情绪平原化分析室",
       "english_name": "Asia-Pacific Capybara Behavior Institute (APCBI)",
       "english_department": "Dept. of Capybara Behavioral Analysis",
       "envelope_warning": "WARNING: EMOTIONAL FLATLINE",
@@ -196,12 +198,13 @@
     }
   },
   "fallback_result": {
-    "name": "格式化游魂",
+    "name": "格式化游魂收容所",
+    "department": "大脑皮层重启与记忆考古系",
     "english_name": "Ghost of Formatted Memory (GFM)",
-    "english_department": "Dept. of Memory Recovery",
+    "english_department": "Dept. of Cortical Reboot & Memory Archaeology",
     "envelope_warning": "WARNING: BRAIN FORMATTED",
     "envelope_code": "FMTGH-26-FALL",
-    "summary": "系统无法解析你的脑电波。你的大脑皮层显然在踏入考场警戒线的前一秒就被彻底格式化了。你不仅不知道试卷上印的是哪个科目的天书，甚至连自己为什么坐在这里都失去了记忆。不要挣扎了，建议立刻原地重启人生，或者赶紧交卷去校门口买个烤冷面。",
+    "summary": "系统无法解析你的脑电波。你的大脑皮层显然在踏入考场警戒线的前一秒就被彻底格式化了。你不仅不知道试卷上印的是哪个科目的天书，甚至连自己为什么坐在这里都失去了记忆。但本所认为，能把大脑格式化到如此纯净的境界，本身就是一种天赋——你的颅腔已经是全球最干净的神经实验场地。现特批收容入所，入职培训第一课：想起自己叫什么名字。",
     "social_tag": "#我的大脑已经蓝屏"
   }
 }

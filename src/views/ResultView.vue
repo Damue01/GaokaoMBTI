@@ -62,6 +62,7 @@
       :is-gate="resultData.isGate"
       :animate="noticeAnimating"
       :player-name="store.playerName"
+      @update:player-name="store.playerName = $event"
     />
 
     <!-- 操作按钮（随通知书一起渲染） -->
@@ -163,6 +164,7 @@ function openEnvelope() {
     envelopeVisible.value = false
     noticeVisible.value = true
     noticeAnimating.value = true
+    store.envelopeSeen = true
 
     setTimeout(() => {
       extrasVisible.value = true
@@ -193,7 +195,15 @@ onMounted(() => {
   }
 
   if (resultData.value) {
-    // 仅显示信封，等待用户点击拆封
+    // 信封已拆过（刷新恢复）→ 跳过动画直接展示通知书
+    if (store.envelopeSeen) {
+      envelopeVisible.value = false
+      noticeVisible.value = true
+      noticeAnimating.value = false
+      extrasVisible.value = true
+      return
+    }
+    // 首次进入结果页：显示信封，等待用户点击拆封
   } else {
     envelopeVisible.value = false
     noticeVisible.value = true
@@ -215,19 +225,34 @@ async function sharePoster() {
       return
     }
 
+    // 临时挂到 body 上，避免父容器影响布局和截图区域
+    const parent = el.parentNode
+    const nextSibling = el.nextSibling
+    document.body.appendChild(el)
+    el.style.left = '0'
+    el.style.top = '0'
+    el.style.position = 'fixed'
+    el.style.zIndex = '-1'
+    await new Promise(r => setTimeout(r, 100))
+
     const canvas = await html2canvas(el, {
       backgroundColor: '#ffffff',
       scale: 2,
       useCORS: true,
       allowTaint: true,
-      logging: false,
-      x: 0,
-      y: 0,
-      scrollX: 0,
-      scrollY: 0,
-      width: el.scrollWidth,
-      height: el.scrollHeight
+      logging: false
     })
+
+    // 还原到原位
+    el.style.left = ''
+    el.style.top = ''
+    el.style.position = ''
+    el.style.zIndex = ''
+    if (nextSibling) {
+      parent.insertBefore(el, nextSibling)
+    } else {
+      parent.appendChild(el)
+    }
 
     posterSrc.value = canvas.toDataURL('image/png')
   } catch (e) {
