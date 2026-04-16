@@ -215,25 +215,19 @@ async function sharePoster() {
       return
     }
 
-    // 临时移入可见区域以确保浏览器渲染
-    const origLeft = el.style.left
-    el.style.left = '0'
-    el.style.opacity = '0'
-    el.style.pointerEvents = 'none'
-    await new Promise(r => setTimeout(r, 100))
-
     const canvas = await html2canvas(el, {
       backgroundColor: '#ffffff',
       scale: 2,
       useCORS: true,
       allowTaint: true,
-      logging: false
+      logging: false,
+      x: 0,
+      y: 0,
+      scrollX: 0,
+      scrollY: 0,
+      width: el.scrollWidth,
+      height: el.scrollHeight
     })
-
-    // 还原隐藏
-    el.style.left = origLeft
-    el.style.opacity = ''
-    el.style.pointerEvents = ''
 
     posterSrc.value = canvas.toDataURL('image/png')
   } catch (e) {
