@@ -156,6 +156,7 @@ export const useExamStore = defineStore('exam', () => {
 
     // 检查是否全部答完
     if (answeredCount.value >= runSequence.value.length) {
+      envelopeSeen.value = false
       setTimeout(() => { view.value = 'result' }, 1000)
     }
   }
@@ -178,6 +179,7 @@ export const useExamStore = defineStore('exam', () => {
 
     // 检查是否答完
     if (isFinished.value) {
+      envelopeSeen.value = false
       view.value = 'result'
     }
   }
@@ -241,6 +243,7 @@ export const useExamStore = defineStore('exam', () => {
   // 触发空闲 fallback，直接跳转结果页
   function triggerFallback() {
     isFallback.value = true
+    envelopeSeen.value = false
     view.value = 'result'
   }
 
