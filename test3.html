@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+.stem { width: 300px; border: 1px solid red; font-size: 16px; line-height: 1.8; }
+.answer {
+  display: inline-flex;
+  flex-wrap: wrap;
+  vertical-align: baseline;
+  gap: 4px;
+  min-width: 36px;
+  border: 1px solid green;
+}
+.box { width: 24px; height: 24px; background: blue; color: white; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="stem">
+这是一段很长的题干。括号（<span class="answer">
+  <div class="box">A</div>
+  <div class="box" style="background: red;">B</div>
+  <div class="box">C</div>
+  <div class="box">D</div>
+  <div class="box">E</div>
+  <div class="box">F</div>
+  <div class="box">G</div>
+</span>）
+</div>
+</body>
+</html>

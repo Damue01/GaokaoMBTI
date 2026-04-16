@@ -1,0 +1,37 @@
+% 密封线独立组件 — 仅渲染左侧密封线区域
+\documentclass{exam-zh}
+
+\examsetup{
+  page/size = a4paper,
+  sealline = {
+    show         = true,
+    scope        = firstpage,
+    line-thickness = 1pt,
+    line-xshift  = 8mm,
+    line-type    = densely-dashed,
+    text         = 密封线内不得答题,
+    text-xshift  = 11mm,
+    text-yshift  = 30mm,
+    circle-show  = true,
+    circle-start = 0.07,
+    circle-end   = 0.92,
+    circle-step  = 3.5em,
+    circle-diameter = 3mm,
+    circle-xshift = 8mm,
+    odd-info-content = {
+      {\kaishu 姓名}：{\underline{\hspace*{8em}}},
+      {\kaishu 准考证号}：{\underline{\hspace*{8em}}},
+      {\kaishu 考场号}：{\underline{\hspace*{8em}}},
+      {\kaishu 座位号}：{\underline{\hspace*{8em}}},
+    },
+    odd-info-seperator = \hspace*{3em},
+    odd-info-align     = center,
+    odd-info-xshift    = 20mm,
+    odd-info-yshift    = 0mm,
+  },
+}
+
+\begin{document}
+% 空白页面 — 仅触发密封线渲染
+\mbox{}
+\end{document}

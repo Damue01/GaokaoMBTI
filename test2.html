@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+.stem { width: 300px; border: 1px solid red; font-size: 16px; line-height: 1.8; }
+.bracket-wrapper {
+   display: inline;
+}
+.answer {
+  display: inline-flex;
+  vertical-align: top;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  min-width: 36px;
+  /* to align with text baseline, usually we need vertical-align: baseline or bottom */
+  position: relative;
+  /* wait, if vertical-align: top, will it sit too high? */
+}
+.box { width: 24px; height: 24px; border: 1px solid blue; }
+</style>
+</head>
+<body>
+<div class="stem">
+这是一个问题。最后面跟着括号（<span class="answer"><div class="box">A</div><div class="box">B</div><div class="box">C</div><div class="box">D</div><div class="box">E</div><div class="box">F</div></span>）
+</div>
+</body>
+</html>
