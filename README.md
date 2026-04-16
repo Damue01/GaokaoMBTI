@@ -1,135 +1,145 @@
-# 🎓 2026 高考命理综合测试
+<div align="center">
 
-一款以高考试卷为视觉外壳的趣味性格测试 Web 应用。用户通过回答 20 道模拟高考风格的选择题，系统基于 15 维人格向量匹配算法，将用户"录取"到一所虚构的搞笑大学，并生成高仿录取通知书。
+# 2026年普通高等学校招生全国统一考试 · 命理综合
 
-## 在线体验
+**一场改变命运的考试，一份来自平行宇宙的录取通知书。**
 
-[www.gaokaombti.com](https://www.gaokaombti.com)
+[![在线体验](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-www.gaokaombti.com-b8342b?style=for-the-badge)](https://www.gaokaombti.com)
 
-## 项目截图
+[![Vue 3](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Pinia](https://img.shields.io/badge/Pinia-Store-ffd859?logo=pinia&logoColor=333)](https://pinia.vuejs.org/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel)](https://www.gaokaombti.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+</div>
+
+---
+
+> 20 道高考风格选择题 → 15 维人格向量匹配 → 被一所离谱大学录取 → 生成仿真录取通知书 → 分享朋友圈
+
+---
+
+## ✨ 亮点
 
 <table>
-  <tr>
-    <td><strong>试卷首页</strong></td>
-    <td><strong>答题页面</strong></td>
-    <td><strong>录取通知书</strong></td>
-  </tr>
-  <tr>
-    <td>高仿高考试卷排版，<br>含考生信息与注意事项</td>
-    <td>手写体选项标记，<br>括号内涂改痕迹动效</td>
-    <td>完整录取通知书，<br>含印章、水印、分享海报</td>
-  </tr>
+<tr>
+<td width="50%">
+
+### 📝 沉浸式试卷体验
+- 1:1 还原高考试卷排版（密封线、考生信息栏、页脚）
+- 手写体 ✗ 标记动效，答题括号内涂改痕迹
+- 底部答题卡气泡实时反馈
+
+</td>
+<td width="50%">
+
+### 🎓 仿真录取通知书
+- 信封拆封动画 → 通知书展开
+- 含印章、水印、雷达图、社交标签
+- 一键生成分享海报（html2canvas + QR Code）
+
+</td>
+</tr>
+<tr>
+<td>
+
+### 🧠 硬核评分引擎
+- 15 维人格模型（自我认知 / 情绪应激 / 权威态度 / 行动模式 / 社交策略）
+- Manhattan 距离匹配 5 所虚构大学
+- 门控彩蛋 + 空闲超时 Fallback
+
+</td>
+<td>
+
+### 📱 移动优先
+- 纯 CSS 手搓，零 UI 框架依赖
+- 适配手机竖屏阅读体验
+- localStorage 断点续答
+
+</td>
+</tr>
 </table>
 
-## 核心玩法
+## 🏫 录取院校一览
 
-- **20 道高考风格选择题**：覆盖考场应激、社交博弈、存亡哲学三大板块
-- **15 维人格评估**：每个选项映射到 S（自我认知）/ E（情绪应激）/ A（权威态度）/ Ac（行动模式）/ So（社交策略）五大类 15 个子维度
-- **Manhattan 距离匹配**：将用户答题向量与 5 所虚构大学的特征坐标比对，匹配最近的一所
-- **门控彩蛋机制**：特定维度累计值超过阈值时，动态插入隐藏附加题，可触发 2 个彩蛋结果
-- **空闲 Fallback**：3 分钟无操作自动触发"格式化游魂收容所"特殊结局
-- **分享海报生成**：使用 html2canvas 将录取通知书渲染为图片，附带二维码
+| | 大学 | 系别 | 触发条件 |
+|:---:|------|------|:---:|
+| 🕊️ | **鸽伦比亚大学** | 物理失联与薛定谔成绩管理系 | 常规匹配 |
+| 📖 | **京华大学** | 末名书院 | 常规匹配 |
+| 🐒 | **吗喽理工大学** | 亚太区高压灵长类行为学 | 常规匹配 |
+| 🪷 | **斯坦佛大学** | 电子木鱼声学与就地圆寂系 | 常规匹配 |
+| 🌊 | **加州大学波及你分校** | 考场应激创伤与拉人下水工程系 | 常规匹配 |
+| 🐛 | **地球Online·BUG修复局** | 系统异常收容与玩家行为矫正处 | 🥚 门控彩蛋 |
+| 🦫 | **亚太区水豚行为模式研究所** | 哺乳动物情绪平原化分析室 | 🥚 门控彩蛋 |
+| 👻 | **格式化游魂收容所** | 大脑皮层重启与记忆考古系 | 💤 3min 空闲 |
 
-## 技术栈
-
-| 层面 | 技术 |
-|------|------|
-| 框架 | Vue 3 (Composition API) |
-| 状态管理 | Pinia |
-| 构建工具 | Vite 5 |
-| 海报生成 | html2canvas |
-| 二维码 | qrcode |
-| 样式 | 纯 CSS（无 UI 框架） |
-
-## 项目结构
-
-```
-web/
-├── public/
-│   ├── questions.json          # 题库（20 道常规题 + 2 道门控题）
-│   ├── results.json            # 大学结果 & 门控彩蛋 & fallback 配置
-│   └── svg/                    # SVG 资源
-├── src/
-│   ├── App.vue                 # 根组件，按 view 状态切换页面
-│   ├── main.js                 # 入口
-│   ├── views/
-│   │   ├── StartView → ExamView.vue  # 试卷首页 + 答题页（合并）
-│   │   └── ResultView.vue            # 录取通知书结果页
-│   ├── components/
-│   │   ├── ExamHeader.vue      # 试卷头部（考生信息）
-│   │   ├── QuestionCard.vue    # 题目卡片（含手写体 SVG 动效）
-│   │   ├── AnswerCard.vue      # 底部答题卡气泡
-│   │   ├── PageFooter.vue      # 页脚
-│   │   ├── SealStamp.vue       # 录取通知书印章
-│   │   ├── SealLine.vue        # 密封线
-│   │   ├── RadarChart.vue      # 雷达图
-│   │   ├── ResultNotice.vue    # 录取通知书内容
-│   │   └── SharePoster.vue     # 分享海报
-│   ├── composables/
-│   │   └── useScoring.js       # 评分引擎（向量提取 + Manhattan 匹配 + 门控检查）
-│   ├── stores/
-│   │   └── exam.js             # Pinia store（状态管理 + localStorage 持久化）
-│   └── styles/                 # 样式文件
-│       ├── base.css            # 基础样式 & CSS 变量
-│       ├── paper.css           # 试卷纸张风格
-│       ├── question.css        # 题目样式
-│       ├── answer-card.css     # 答题卡
-│       ├── result.css          # 结果页
-│       ├── poster.css          # 分享海报
-│       └── motion.css          # 动画
-└── vite.config.js
-```
-
-## 快速开始
+## 🚀 快速开始
 
 ```bash
-# 安装依赖
-cd web
+git clone https://github.com/Damue01/GaokaoMBTI.git
+cd GaokaoMBTI
+
 npm install
-
-# 启动开发服务器
-npm run dev
-
-# 构建生产版本
-npm run build
+npm run dev          # 开发 → http://localhost:5173
+npm run build        # 构建生产版本
 ```
 
-## 评分机制说明
+## 🧬 评分机制
 
 ### 15 维人格模型
 
-| 大类 | 维度 | 含义 |
-|------|------|------|
-| **S** 自我认知 | S1 / S2 / S3 | 估分自尊度 / 知识图谱掌控 / 考试哲学导向 |
-| **E** 情绪应激 | E1 / E2 / E3 | 铃声应激反应 / 错题依恋机制 / 备考社交依恋 |
-| **A** 权威态度 | A1 / A2 / A3 | 考纲防御机制 / 答题强迫秩序 / 监考权力认知 |
-| **Ac** 行动模式 | Ac1 / Ac2 / Ac3 | 压轴题执念 / 改错果断度 / 草稿纸推演 |
-| **So** 社交策略 | So1 / So2 / So3 | 对答案主动性 / 分数边界感 / 学霸伪装术 |
+```
+S  自我认知    S1 估分自尊度 ─ S2 知识图谱掌控 ─ S3 考试哲学导向
+E  情绪应激    E1 铃声应激反应 ─ E2 错题依恋机制 ─ E3 备考社交依恋
+A  权威态度    A1 考纲防御机制 ─ A2 答题强迫秩序 ─ A3 监考权力认知
+Ac 行动模式    Ac1 压轴题执念 ─ Ac2 改错果断度 ─ Ac3 草稿纸推演
+So 社交策略    So1 对答案主动性 ─ So2 分数边界感 ─ So3 学霸伪装术
+```
 
-### 匹配算法
+### 匹配流程
 
-1. 用户完成答题后，提取每个维度的平均分（1-4 分），构成 15 维向量
-2. 计算用户向量与每所大学坐标的 Manhattan 距离
-3. 距离最短的大学即为匹配结果
+```
+答题完成 → 提取 15 维平均分向量
+        → 与 5 所大学坐标计算 Manhattan 距离
+        → 距离最短 = 你的命中注定
+```
 
 ### 门控彩蛋
 
-- **G1**（第 12 题后触发）：当 E1 维度累计 ≥ 12 时，插入附加题，可通往「地球Online·BUG修复局」
-- **G2**（第 14 题后触发）：当 So3 维度累计 ≥ 10 时，插入附加题，可通往「亚太区水豚行为模式研究所」
+| 彩蛋 | 触发点 | 条件 | 结果 |
+|:---:|:---:|------|------|
+| G1 | 第 12 题后 | E1 维度累计 ≥ 12 | → 地球Online·BUG修复局 |
+| G2 | 第 14 题后 | So3 维度累计 ≥ 10 | → 亚太区水豚行为模式研究所 |
 
-## 可用结果
+## 🗂️ 项目结构
 
-| 大学 | 系别 |
-|------|------|
-| 鸽伦比亚大学 | 物理失联与薛定谔成绩管理系 |
-| 京华大学 | 末名书院 |
-| 吗喽理工大学 | 亚太区高压灵长类行为学 |
-| 斯坦佛大学 | 电子木鱼声学与就地圆寂系 |
-| 加州大学波及你分校 | 考场应激创伤与拉人下水工程系 |
-| 🥚 地球Online·BUG修复局 | 系统异常收容与玩家行为矫正处 |
-| 🥚 亚太区水豚行为模式研究所 | 哺乳动物情绪平原化分析室 |
-| 💤 格式化游魂收容所 | 大脑皮层重启与记忆考古系 |
+```
+src/
+├── views/
+│   ├── ExamView.vue          # 试卷首页 + 答题
+│   └── ResultView.vue        # 信封动画 + 录取通知书
+├── components/
+│   ├── QuestionCard.vue      # 题目卡片（手写体动效）
+│   ├── AnswerCard.vue        # 底部答题卡
+│   ├── ResultNotice.vue      # 录取通知书
+│   ├── SharePoster.vue       # 分享海报
+│   ├── RadarChart.vue        # 雷达图
+│   ├── SealStamp.vue         # 印章
+│   └── ...
+├── composables/
+│   └── useScoring.js         # 评分引擎
+├── stores/
+│   └── exam.js               # 状态管理 + 持久化
+└── styles/                   # 纯 CSS 样式系统
+```
 
-## License
+## 📄 License
 
-MIT
+[MIT](LICENSE)
+
+---
+
+<div align="center">
+<sub>如果觉得有趣，欢迎 ⭐ Star 支持一下</sub>
+</div>
