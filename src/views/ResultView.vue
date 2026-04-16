@@ -77,7 +77,7 @@
       <div class="social-links__buttons">
         <a href="https://www.xiaohongshu.com/user/profile/658448ae000000001d002081" target="_blank" rel="noopener noreferrer" class="btn btn--social"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 小 红 书</a>
         <button class="btn btn--social" @click="showQrCode = true"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 公 众 号</button>
-        <a href="https://github.com/Damue01" target="_blank" rel="noopener noreferrer" class="btn btn--social"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> GitHub</a>
+        <a href="https://github.com/Damue01/GaokaoMBTI" target="_blank" rel="noopener noreferrer" class="btn btn--social"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> GitHub</a>
       </div>
     </div>
 
@@ -240,7 +240,9 @@ async function sharePoster() {
       scale: 2,
       useCORS: true,
       allowTaint: true,
-      logging: false
+      logging: false,
+      width: el.offsetWidth,
+      height: el.offsetHeight
     })
 
     // 还原到原位
