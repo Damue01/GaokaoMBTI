@@ -1,0 +1,79 @@
+/* ===== answer-card.css — 涂卡进度条 ===== */
+
+.answer-card {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--exam-paper);
+  border-top: 2px solid var(--exam-black);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 50;
+  flex-wrap: wrap;
+}
+
+.answer-card__label {
+  font-family: var(--font-hei);
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.answer-card__bubble {
+  width: 28px;
+  height: 18px;
+  border: 1.5px solid var(--exam-black);
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: var(--font-hei);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.answer-card__bubble--filled {
+  background: var(--exam-black);
+  color: #fff;
+  border-color: var(--exam-black);
+}
+
+.answer-card__bubble--current {
+  border-color: var(--exam-red);
+  color: var(--exam-red);
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.2);
+}
+
+.answer-card__bubble--gate {
+  border-color: var(--exam-red);
+  border-style: dashed;
+}
+
+.answer-card__bubble--gate.answer-card__bubble--filled {
+  background: var(--exam-red);
+  border-style: solid;
+}
+
+.answer-card__progress {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--exam-gray);
+  font-family: var(--font-hei);
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .answer-card {
+    padding: 8px 12px;
+  }
+  .answer-card__bubble {
+    width: 22px;
+    height: 14px;
+    font-size: 8px;
+  }
+}

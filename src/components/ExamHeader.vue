@@ -1,0 +1,39 @@
+<template>
+  <div class="exam-header">
+    <div class="exam-header__secret">绝密 ★ 启用前</div>
+    <div class="exam-header__year">2026 年普通高等学校招生全国统一考试</div>
+    <h1 class="exam-header__title">命 理 综 合</h1>
+    <div v-if="showInfo" class="exam-info">
+      <div class="exam-info__row">
+        <span class="exam-info__label">姓名：</span>
+        <span class="exam-info__underline">
+          <input
+            v-if="editable"
+            :value="modelValue"
+            @input="emit('update:modelValue', $event.target.value)"
+            class="exam-info__input"
+            placeholder="选填"
+            maxlength="10"
+          />
+          <span v-else class="exam-info__input">{{ modelValue }}</span>
+        </span>
+      </div>
+      <div class="exam-info__row">
+        <span class="exam-info__label">准考证号：</span>
+        <span class="exam-info__underline exam-info__underline--ticket">{{ ticketNumber }}</span>
+      </div>
+    </div>
+    <div class="exam-header__info">本试卷共 20 题，满分 100 分。考试时间不限。考生务必保持冷静。</div>
+  </div>
+</template>
+
+<script setup>
+const props = defineProps({
+  showInfo: { type: Boolean, default: false },
+  editable: { type: Boolean, default: false },
+  ticketNumber: { type: String, default: '' },
+  modelValue: { type: String, default: '' }
+})
+
+const emit = defineEmits(['update:modelValue'])
+</script>

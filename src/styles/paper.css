@@ -1,0 +1,154 @@
+/* ===== paper.css — A4 试卷容器 ===== */
+
+.paper {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  background: var(--exam-paper);
+  padding: var(--page-padding);
+  position: relative;
+  padding-bottom: 60px;
+}
+
+/* 页脚 */
+.page-footer {
+  text-align: center;
+  font-size: 13px;
+  font-family: var(--font-song);
+  color: var(--exam-black);
+  margin-top: 40px;
+  padding-bottom: 20px;
+}
+
+/* 试卷头部 */
+.exam-header {
+  text-align: center;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.exam-header__secret {
+  text-align: left;
+  font-size: 14px;
+  font-family: var(--font-hei);
+  font-weight: bold;
+  color: var(--exam-black);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.exam-header__year {
+  font-size: 20px;
+  font-family: var(--font-song);
+  letter-spacing: 3px;
+  color: var(--exam-black);
+  margin-bottom: 10px;
+}
+
+.exam-header__title {
+  font-size: 32px;
+  font-weight: bold;
+  font-family: var(--font-song);
+  letter-spacing: 6px;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.exam-header__info {
+  font-size: 15px;
+  color: var(--exam-black);
+  margin-top: 8px;
+  font-family: var(--font-song);
+}
+
+/* 注意事项 */
+.exam-notice {
+  padding: 0;
+  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.8;
+  font-family: var(--font-song);
+}
+
+/* 考生信息栏（标题下方，参照真题样式） */
+.exam-info {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 16px;
+  font-family: var(--font-song);
+  font-size: 15px;
+}
+
+.exam-info__row {
+  display: flex;
+  align-items: baseline;
+}
+
+.exam-info__label {
+  white-space: nowrap;
+}
+
+.exam-info__underline {
+  display: inline-block;
+  min-width: 140px;
+  border-bottom: 1px solid var(--exam-black);
+  text-align: center;
+  line-height: 1.8;
+}
+
+.exam-info__underline--ticket {
+  min-width: 200px;
+  letter-spacing: 2px;
+}
+
+.exam-info__input {
+  border: none;
+  font-family: var(--font-song);
+  font-size: 15px;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  outline: none;
+  color: var(--exam-black);
+}
+.exam-info__input::placeholder {
+  font-family: var(--font-song);
+  font-size: 15px;
+  color: var(--exam-gray);
+  opacity: 0.5;
+}
+
+.exam-notice__title {
+  font-family: var(--font-hei);
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.exam-notice__item {
+  text-indent: 2em;
+  margin-bottom: 2px;
+}
+
+.exam-notice__num {
+  font-family: var(--font-song);
+}
+
+/* 大题分节标题 */
+.section-title {
+  font-family: var(--font-hei);
+  font-size: 15px;
+  font-weight: bold;
+  margin: 24px 0 16px;
+  text-indent: 2em;
+  line-height: 1.8;
+}
+
+@media (max-width: 860px) {
+  .paper {
+    margin: 0;
+    padding: 20px 16px;
+    box-shadow: none;
+  }
+}

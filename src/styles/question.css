@@ -1,0 +1,179 @@
+/* ===== question.css — 题目卡片样式（还原高考试卷格式） ===== */
+
+.question-card {
+  margin-bottom: 36px;
+}
+
+.question-card__stem {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 4px;
+  text-indent: 2em;
+  font-family: var(--font-song);
+}
+
+.question-card__number {
+  font-weight: normal;
+  margin-right: 2px;
+}
+
+.question-card__bracket {
+  display: inline;
+}
+
+.question-card__answer {
+  position: relative;
+  display: inline-block;
+  min-width: 36px; /* 撑开括号，固定最小宽度防止没选时太宽或太窄 */
+  height: 1.2em; /* 提供足够的绝对定位基准高度 */
+  vertical-align: bottom;
+  text-align: center;
+  text-indent: 0;
+}
+
+.answer-item {
+  position: absolute;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  z-index: 10;
+}
+
+.answer-item--first {
+  left: 50%;
+  top: 50%;
+}
+
+.history-wrapper {
+  position: absolute;
+  left: calc(100% + 4px); /* 稍微靠近一点 */
+  top: -6px; /* 固定顶部基准线，确保换行向下延伸时绝不改变第一行的绝对位置 */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 4px; /* 横向与纵向间距稍微缩紧 */
+  
+  /* 将通过内联样式 --max-width 或后备控制换行的最大宽度 */
+  width: max-content; 
+  max-width: var(--max-width, 160px); 
+  
+  align-items: flex-start; 
+  align-content: flex-start;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.history-item {
+  position: static; /* 取消绝对定位，参与 flex 流式排版 */
+  display: inline-block;
+}
+
+.hw-letter {
+  width: 100%;
+  height: 100%;
+}
+
+.hw-letter path {
+  fill: none;
+  stroke: var(--exam-black);
+  stroke-width: 7; /* 模拟手写黑色中性笔 */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scratch-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.scratch-line path {
+  fill: none;
+  stroke: var(--exam-black);
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.85; /* 微微透出笔画感 */
+}
+
+/* 选项列表 — 纯文本排版，无边框无背景 */
+.option-list {
+  padding: 0;
+  margin: 0;
+}
+
+.option-item {
+  position: relative;
+  text-indent: 0; /* Reset indent from block, we'll use padding */
+  padding-left: 4em; /* Match original 4em indent */
+  cursor: pointer;
+  line-height: 1.8;
+  font-size: 15px;
+  font-family: var(--font-song);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.option-item:hover {
+  background-color: rgba(0, 0, 0, 0.03); /* 淡色背景模拟铅笔磨蹭或是手指触摸 */
+  color: var(--exam-black);
+}
+
+.option-item--selected {
+  color: var(--exam-black); /* 同样保持纯黑 */
+}
+
+.option-item__label {
+  position: relative;
+  font-weight: normal; /* 取消加粗，全变常规纯黑 */
+  margin-right: 4px;
+  display: inline-block;
+}
+
+.drawn-circle, .drawn-cross {
+  position: absolute;
+  top: -20%;
+  left: -30%;
+  width: 160%;
+  height: 140%;
+  pointer-events: none;
+  color: var(--exam-black);
+  opacity: 0.85;
+}
+
+.drawn-circle path, .drawn-cross path {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+/* 附加题边框纯黑白印刷风格 */
+.question-card--gate {
+  border: 1px dashed var(--exam-black);
+  padding: 16px;
+  background: transparent;
+  margin-top: 20px;
+}
+
+.question-card--gate .question-card__stem::before {
+  content: '【附加题】';
+  font-family: var(--font-hei);
+  color: var(--exam-black);
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

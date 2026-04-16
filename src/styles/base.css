@@ -1,0 +1,69 @@
+/* ===== base.css — 全局重置 & CSS 变量 ===== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* 考试红/黑主色 */
+  --exam-black: #333333;
+  --exam-red: #c0392b;
+  --exam-red-light: #e74c3c;
+  --exam-blue: #2c3e80;
+  --exam-gray: #666;
+  --exam-light-gray: #f5f5f0;
+  --exam-border: #333;
+  --exam-bg: #fff;
+  --exam-paper: #fff;
+
+  /* 字体栈 */
+  --font-song: 'Noto Serif SC', 'Source Han Serif SC', 'Noto Serif CJK SC', 'SimSun', 'STSong', serif;
+  --font-hei: 'Source Han Sans SC', 'Noto Sans CJK SC', 'SimHei', 'Microsoft YaHei', sans-serif;
+  --font-kai: 'KaiTi', 'STKaiti', serif;
+  --font-cinzel: 'Cinzel', 'Times New Roman', serif;
+  --font-garamond: 'EB Garamond', 'Georgia', 'Palatino Linotype', serif;
+
+  /* 间距 */
+  --page-max-width: 794px;
+  --page-padding: 40px;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-song);
+  color: var(--exam-black);
+  background: var(--exam-bg);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 选中文字样式 */
+::selection {
+  background: #d5d5d5;
+  color: var(--exam-black);
+}

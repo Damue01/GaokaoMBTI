@@ -1,0 +1,694 @@
+/* ===== result.css �?录取通知�?& 雷达�?===== */
+
+.result-page {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* 录取通知书容�?- 证书边框与羊皮纸质感 */
+.notice {
+  border: 2.5px solid #d12525; /* 复古棕框 */
+  max-width: 640px;
+  margin: 0 auto 32px;
+  padding: 56px 48px;
+  position: relative;
+  
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  color: var(--exam-black);
+  overflow: hidden; /* 包住盖章 scale(3) 动画，防止溢出引起滚动条闪烁 */
+}
+
+/* 中间装饰线（第二层） */
+.notice::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid #d12525;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* 内框线（第三层）�?改为四角 L 形装饰，不闭�?*/
+.notice::after {
+  content: ''; position: absolute; inset: 12px; border: 1px dashed rgba(209, 37, 37, 0.4); pointer-events: none;
+}
+
+/* 四角 L 形装饰（替代原内层闭合线�?*/
+.notice__corner {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-color: #d12525;
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.7;
+  z-index: 1;
+}
+.notice__corner--tl { top: 14px; left: 14px; border-top-width: 2px; border-left-width: 2px; }
+.notice__corner--tr { top: 14px; right: 14px; border-top-width: 2px; border-right-width: 2px; }
+.notice__corner--bl { bottom: 14px; left: 14px; border-bottom-width: 2px; border-left-width: 2px; }
+.notice__corner--br { bottom: 14px; right: 14px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.notice--gate .notice__corner { border-color: #d12525; }
+
+/* 红色印戳效果/红头文字 */
+.notice__badge {
+  font-size: 17px;
+  color: #d12525;
+  font-family: var(--font-song); /* 改为宋体 */
+  letter-spacing: 12px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+/* 红色分隔�?*/
+.notice__divider {
+  border: none;
+  height: 1px;
+  background: #d12525;
+  width: 50%;
+  margin: 0 auto 20px;
+  opacity: 0.35;
+}
+.notice--gate .notice__divider { background: #d12525; }
+
+.notice__title {
+  font-size: 34px;
+  font-family: var(--font-song);
+  font-weight: 900;
+  color: #c0272b;
+  letter-spacing: 6px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.notice__content {
+  text-align: left;
+  font-family: var(--font-song);
+  color: var(--exam-black);
+  margin-bottom: 40px;
+}
+
+.notice__greeting {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.notice__summary {
+  font-size: 15px;
+  font-family: var(--font-song);
+  line-height: 2.2;
+  text-indent: 2em;
+  margin-bottom: 24px;
+}
+
+.notice__signature {
+  text-align: right;
+  position: relative;
+  padding-right: 20px;
+  margin-top: 40px;
+}
+
+.notice__dept {
+  font-size: 15px;
+  font-family: var(--font-song);
+  color: var(--exam-black);
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.notice__date {
+  font-size: 15px;
+  font-family: var(--font-song);
+}
+
+/* 印章�?tag，盖在落款上 */
+.notice__stamp {
+  position: absolute;
+  right: -10px;
+  bottom: 16px;
+  display: inline-block;
+  font-size: 14px;
+  color: #d12525;
+  font-family: var(--font-hei);
+  padding: 4px 10px;
+  border: 2px double #d12525;
+  border-radius: 4px;
+  font-weight: bold;
+  transform: rotate(-15deg); /* 模拟现实中盖章的倾斜 */
+  opacity: 0.85;
+}
+
+.notice__watermark {
+  position: absolute;
+  inset: -35%;
+  display: block;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  transform: rotate(-35deg);
+  transform-origin: center;
+}
+
+.notice__watermark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--watermark-image);
+  background-repeat: repeat;
+  background-size: 260px 120px;
+}
+
+/* 门控彩蛋样式 */
+.notice--gate {
+  border-color: #d12525;
+  background: transparent;
+}
+
+/* === 分步揭示动画 === */
+.notice--animate .notice-stagger {
+  animation: staggerIn 0.6s ease-out both;
+  animation-delay: calc(var(--stagger, 0) * 0.3s);
+}
+
+.notice--animate .notice-stamp-anim {
+  animation: stampSlam 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s both;
+}
+
+/* === 信封 === */
+.envelope {
+  max-width: 520px;
+  margin: 40px auto;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.03) 3px, rgba(0,0,0,0.03) 4px),
+    #c62828;
+  border: 2px solid #9e2a1e;
+  padding: 80px 40px 44px;
+  text-align: center;
+  position: relative;
+  border-radius: 2px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  animation: envelopeAppear 0.6s ease-out;
+  overflow: hidden;
+}
+
+/* V 型翻盖装饰（纯视觉，不参与动画） */
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 42%;
+  background:
+    repeating-linear-gradient(135deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px),
+    #c62828;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* V 型翻盖底边细线 */
+.envelope::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 42%;
+  background: rgba(139, 69, 69, 0.35);
+  clip-path: polygon(
+    0 0, 50% 100%, 100% 0,
+    99.8% 0, 50% 99.2%, 0.2% 0
+  );
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* --- 中式篆刻方印 --- */
+.envelope__seal {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  width: 80px;
+  height: 80px;
+  z-index: 6;
+  color: rgba(212, 175, 55, 0.92);
+  opacity: 0.85;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* --- 中央文字 --- */
+.envelope__text {
+  position: relative;
+  z-index: 2;
+  color: #f5deb3;
+  font-family: var(--font-kai);
+  font-size: 30px;
+  letter-spacing: 10px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  margin-top: 12px;
+}
+
+.envelope__hint {
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  margin-top: 20px;
+  font-family: var(--font-hei);
+  letter-spacing: 2px;
+}
+
+/* --- 左上角院系文案 --- */
+.envelope__dept {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  text-align: left;
+  z-index: 5;
+}
+
+.envelope__dept-line {
+  font-family: var(--font-garamond);
+  font-size: 8px;
+  color: rgba(212, 175, 55, 0.55);
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.envelope__dept-warn {
+  font-family: var(--font-hei);
+  font-size: 7px;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* --- 左下角编码 --- */
+.envelope__code {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  text-align: left;
+  z-index: 2;
+}
+
+.envelope__code::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 0;
+  border-top: 0.5px solid rgba(212, 175, 55, 0.4);
+  margin-bottom: 4px;
+}
+
+.envelope__code-line {
+  font-family: var(--font-garamond);
+  font-size: 7.5px;
+  color: rgba(212, 175, 55, 0.45);
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* --- 右上角 SVG 邮戳 --- */
+.envelope__postmark {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 80px;
+  height: 80px;
+  z-index: 5;
+}
+
+.envelope__postmark circle {
+  fill: none;
+  stroke: rgba(212, 175, 55, 0.3);
+  stroke-width: 0.6;
+}
+
+.envelope__postmark circle:nth-child(3) {
+  stroke-width: 1;
+  stroke: rgba(212, 175, 55, 0.4);
+}
+
+.envelope__postmark text {
+  fill: rgba(212, 175, 55, 0.5);
+  font-family: var(--font-garamond);
+  font-size: 7px;
+  letter-spacing: 0.5px;
+}
+
+.envelope__postmark-center {
+  font-size: 9px !important;
+  font-weight: bold;
+  fill: rgba(212, 175, 55, 0.6) !important;
+  letter-spacing: 1.5px !important;
+}
+
+/* --- 打开动画状态 --- */
+.envelope--opening {
+  pointer-events: none;
+  animation: envelopeExit 0.8s 0.35s ease-in forwards;
+}
+
+.envelope--opening .envelope__seal {
+  animation: sealLift 0.4s ease-out forwards;
+}
+
+/* 按钮区域：预渲染但不可见，等动画 class 加入后淡�?*/
+.result-actions:not(.extras-fade-in) {
+  opacity: 0;
+  pointer-events: none;
+}
+.extras-fade-in {
+  animation: staggerIn 0.6s ease-out both;
+}
+
+/* 操作按钮 */
+.result-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  position: relative;
+  font-family: var(--font-hei);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: var(--exam-black);
+  transition: none; /* 去除各种平滑网页特效 */
+  letter-spacing: 2px;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+/* 答题卡方括号（HTML 中直接渲染，visibility 切换避免任何抖动�?*/
+.btn__check {
+  font-weight: normal;
+  letter-spacing: 0;
+  margin-right: 4px;
+}
+.btn__fill {
+  visibility: hidden;
+}
+.btn:hover .btn__fill,
+.btn:active .btn__fill {
+  visibility: visible;
+}
+
+.btn--primary {
+  /* 主要按钮可以和普通按钮保持同一种物理手涂感 */
+}
+
+/* 导出区域 */
+.export-area {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (max-width: 860px) {
+  .notice {
+    margin: 0 12px 24px;
+    padding: 24px 16px;
+  }
+}
+
+/* === 海报预览模态框 === */
+.poster-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.poster-modal__body {
+  max-width: 375px;
+  width: 100%;
+  text-align: center;
+}
+
+.poster-modal__img {
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.poster-modal__hint {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-family: var(--font-hei);
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+
+.poster-modal__close {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-top: 12px;
+}
+
+/* === 社媒引导区 === */
+.social-links {
+  text-align: center;
+  margin-top: 20px;
+}
+.social-links:not(.extras-fade-in) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.social-links__label {
+  font-family: var(--font-song);
+  font-size: 13px;
+  color: var(--exam-gray);
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.social-links__buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn--social {
+  font-size: 14px;
+  color: var(--exam-gray);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn--social:hover {
+  color: var(--exam-red);
+}
+
+/* === 公众号二维码弹窗（复用录取通知书设计语言） === */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.qr-modal__body {
+  background: #fff;
+  border: 2.5px solid #d12525;
+  padding: 36px 32px 28px;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+  position: relative;
+}
+
+/* 中间装饰线（第二层） */
+.qr-modal__body::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid #d12525;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* 四角 L 形装饰 */
+.qr-modal__corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #d12525;
+  border-style: solid;
+  border-width: 0;
+  opacity: 0.7;
+  z-index: 1;
+}
+.qr-modal__corner--tl { top: 10px; left: 10px; border-top-width: 2px; border-left-width: 2px; }
+.qr-modal__corner--tr { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; }
+.qr-modal__corner--bl { bottom: 10px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; }
+.qr-modal__corner--br { bottom: 10px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.qr-modal__badge {
+  font-size: 15px;
+  color: #d12525;
+  font-family: var(--font-song);
+  letter-spacing: 8px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.qr-modal__divider {
+  border: none;
+  height: 1px;
+  background: #d12525;
+  width: 50%;
+  margin: 0 auto 20px;
+  opacity: 0.35;
+}
+
+.qr-modal__img {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.qr-modal__name {
+  font-family: var(--font-song);
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--exam-black);
+  letter-spacing: 3px;
+  margin-top: 14px;
+}
+
+.qr-modal__hint {
+  font-family: var(--font-song);
+  font-size: 12px;
+  color: var(--exam-gray);
+  opacity: 0.6;
+  margin-top: 6px;
+}
+
+.qr-modal__close {
+  margin-top: 16px;
+}
+.notice__subtitle {
+  font-size: 14px;
+  font-family: var(--font-cinzel);
+  font-weight: 700;
+  color: var(--exam-black);
+  opacity: 0.55;
+  letter-spacing: 3px;
+  margin-top: 8px;
+  margin-bottom: 28px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+/* === 水印层 === */
+.notice__watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%) rotate(-35deg);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 28px 52px;
+  pointer-events: none;
+  z-index: 0;
+}
+.notice__watermark span {
+  font-size: 18px;
+  font-family: var(--font-kai);
+  color: #d12525;
+  opacity: 0.035;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+/* === 编号 === */
+.notice__number {
+  font-size: 11px;
+  font-family: var(--font-song);
+  color: var(--exam-gray);
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  text-align: right;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* === z-index 提升（确保内容在水印之上）=== */
+.notice__badge,
+.notice__divider,
+.notice__title,
+.notice__content,
+.notice__fine-print {
+  position: relative;
+  z-index: 1;
+}
+
+/* === 正式录取行 === */
+.notice__formal {
+  font-size: 15px;
+  font-family: var(--font-song);
+  line-height: 2.2;
+  text-indent: 2em;
+  margin-bottom: 12px;
+}
+.notice__formal strong {
+  color: #c0272b;
+}
+
+/* === 报到提示 === */
+.notice__report {
+  font-size: 15px;
+  font-family: var(--font-song);
+  line-height: 2.2;
+  text-indent: 2em;
+  margin-bottom: 24px;
+}
+
+/* === 底部细则 === */
+.notice__fine-print {
+  font-size: 11px;
+  font-family: var(--font-song);
+  color: var(--exam-gray);
+  text-align: center;
+  opacity: 0.5;
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
