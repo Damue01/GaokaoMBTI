@@ -313,7 +313,7 @@ async function sharePoster() {
 
     let canvas
     const baseOpts = {
-      backgroundColor: '#ffffff',
+      backgroundColor: null,
       useCORS: true,
       allowTaint: true,
       logging: false,
