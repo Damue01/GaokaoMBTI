@@ -246,6 +246,32 @@ function getPosterErrorMessage(error, context = {}) {
   return `海报生成失败：${message || '未知错误'}。`
 }
 
+function canvasToPngUrl(canvas) {
+  return new Promise((resolve, reject) => {
+    if (typeof canvas.toBlob === 'function') {
+      try {
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error('canvas toBlob returned empty result'))
+            return
+          }
+          resolve(URL.createObjectURL(blob))
+        }, 'image/png')
+        return
+      } catch (error) {
+        reject(error)
+        return
+      }
+    }
+
+    try {
+      resolve(canvas.toDataURL('image/png'))
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
 async function sharePoster() {
   posterVisible.value = true
   await nextTick()
@@ -255,6 +281,7 @@ async function sharePoster() {
   // 等待 QR code 和字体渲染完成，移动端多等一些
   await new Promise(r => setTimeout(r, isMobile ? 1200 : 600))
 
+  let overlay = null
   try {
     const el = posterRef.value?.$el
     if (!el) {
@@ -274,6 +301,11 @@ async function sharePoster() {
     el.style.top = '0'
     el.style.zIndex = '99999'
     el.style.pointerEvents = 'none'
+
+    // 用遮罩层挡住海报，防止用户看到闪烁，同时保持元素对 html2canvas 可见
+    overlay = document.createElement('div')
+    overlay.style.cssText = 'position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:100000;background:#f5f0e8;pointer-events:none;'
+    document.body.appendChild(overlay)
 
     // 强制两帧重排，确保 iOS 完成绘制
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
@@ -297,10 +329,11 @@ async function sharePoster() {
       canvas = await html2canvas(el, { ...baseOpts, scale: 1 })
     }
 
-    // 还原样式
+    // 还原样式并移除遮罩
     el.style.cssText = savedCss
+    overlay.remove()
 
-    const dataUrl = canvas.toDataURL('image/png')
+    const dataUrl = await canvasToPngUrl(canvas)
 
     // 移动端尝试使用系统分享
     if (isMobile && navigator.share) {
@@ -327,6 +360,7 @@ async function sharePoster() {
     console.error('海报生成失败', e)
     alert(getPosterErrorMessage(e))
   } finally {
+    if (overlay) overlay.remove()
     posterVisible.value = false
   }
 }

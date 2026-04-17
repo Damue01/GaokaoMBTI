@@ -93,8 +93,10 @@
   color: var(--exam-black);
   text-align: center;
   font-family: var(--font-cinzel);
-  opacity: 0.58;
-  letter-spacing: 0.4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.55;
+  letter-spacing: 3px;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -148,7 +150,9 @@
 .poster__watermark {
   position: absolute;
   inset: -35%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   overflow: hidden;
   transform: rotate(-35deg);
   transform-origin: center;
@@ -156,13 +160,14 @@
   z-index: 0;
 }
 
-.poster__watermark::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--watermark-image);
-  background-repeat: repeat;
-  background-size: 260px 120px;
+.poster__watermark-text {
+  display: block;
+  color: rgba(209, 37, 37, 0.06);
+  font-size: 22px;
+  line-height: 1;
+  font-family: Baskerville, Georgia, STSong, SimSun, serif;
+  letter-spacing: 6px;
+  white-space: nowrap;
 }
 
 /* === 编号 === */

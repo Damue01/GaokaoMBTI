@@ -1,11 +1,15 @@
 ﻿<template>
   <div class="poster" :class="{ 'poster--gate': isGate }">
     <!-- 水印层 -->
-    <div
-      class="poster__watermark"
-      :style="{ '--watermark-image': watermarkSvg }"
-      aria-hidden="true"
-    ></div>
+    <div class="poster__watermark" aria-hidden="true">
+      <span
+        v-for="index in 12"
+        :key="index"
+        class="poster__watermark-text"
+      >
+        {{ watermarkText }}
+      </span>
+    </div>
 
     <!-- 角花装饰 -->
     <span class="poster__corner poster__corner--tl"></span>
@@ -104,21 +108,7 @@ const admissionNo = computed(() => {
   return `${year}-${String(Math.abs(hash) % 1000000).padStart(6, '0')}`
 })
 
-const watermarkSvg = computed(() => {
-  const text = (props.result.name || '').replace(/[&<>'"]/g, (char) => {
-    const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&apos;'
-    }
-    return map[char]
-  })
-
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="260" height="120" viewBox="0 0 260 120"><text x="0" y="68" fill="rgba(209,37,37,0.045)" font-size="22" font-family="Baskerville, Georgia, STSong, SimSun, serif">${text}</text></svg>`
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
-})
+  const watermarkText = computed(() => props.result.name || 'GAOKAO MBTI')
 
 onMounted(async () => {
   if (qrRef.value) {
