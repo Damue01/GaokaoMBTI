@@ -48,16 +48,54 @@ export const useExamStore = defineStore('exam', () => {
   // 运行时题序（含插入的门控题）
   const runSequence = ref([])     // [{ type:'normal', id:1 }, { type:'gate', id:'G1' }]
 
-  // 门控 G1 是否已插入
+  // 门控 G1 (BUG题) 是否已插入
   const g1Inserted = ref(false)
-  // 门控 G2 是否已插入
-  const g2Inserted = ref(false)
+
+  // BUG 抽签结果：开考时 1% 概率抽中，抽中后会在 Q15 后插入 BUG 题
+  const bugLotteryWon = ref(false)
+
+  // 首次答题的时间戳（毫秒）。用于计算平均答题速度（水豚触发）
+  const firstAnswerAt = ref(0)
+
+  // 反选/改选次数：用户把已选的选项再点一次（反选涂销）或改选到其他选项算一次
+  // 用于水豚触发的「零犹豫」判定
+  const changeCount = ref(0)
 
   // 是否因空闲超时触发 fallback 结果
   const isFallback = ref(false)
 
   // 信封是否已被拆开（用于区分首次进入和刷新恢复）
   const envelopeSeen = ref(false)
+
+  // 选项乱序映射: { [questionKey]: ['C','A','D','B'] }
+  // questionKey 格式: 'n-<id>' (normal) / 'g-<id>' (gate)
+  // 数组第 i 位表示：新位置 i（即显示为 A/B/C/D 中的第 i 个）对应原始的 label
+  const optionOrderMap = ref({})
+
+  // Fisher–Yates 洗牌
+  function shuffleArray(arr) {
+    const a = arr.slice()
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+
+  // 为所有题目（普通 + 门控）生成选项乱序映射
+  function regenerateOptionOrder() {
+    const map = {}
+    const labels = ['A', 'B', 'C', 'D']
+    for (const q of questions.value) {
+      const original = q.options.map(o => o.label)
+      map[`n-${q.id}`] = shuffleArray(original).slice(0, labels.length)
+    }
+    for (const q of gateQuestions.value) {
+      const original = q.options.map(o => o.label)
+      map[`g-${q.id}`] = shuffleArray(original).slice(0, labels.length)
+    }
+    optionOrderMap.value = map
+  }
 
   // 当前题目对象
   const currentItem = computed(() => runSequence.value[currentIndex.value] || null)
@@ -74,17 +112,65 @@ export const useExamStore = defineStore('exam', () => {
     return Math.round((currentIndex.value / runSequence.value.length) * 100)
   })
 
-  // 已答题数
+  // 已答题数（不计入 BUG 题：BUG 题不占答题进度）
   const answeredCount = computed(() => {
-    return Object.keys(answers.value).length + Object.keys(gateAnswers.value).length
+    const normalCount = Object.keys(answers.value).length
+    const gateCount = Object.keys(gateAnswers.value).filter(id => {
+      const gq = gateQuestions.value.find(q => q.id === id)
+      return gq && !gq.is_bug
+    }).length
+    return normalCount + gateCount
   })
 
-  // 获取题目的实际对象
+  // 获取题目的实际对象（应用选项乱序；门控题做 {SEAT4} 等模板替换）
   function getQuestionObj(item) {
     if (!item) return null
-    if (item.type === 'normal') return questions.value.find(q => q.id === item.id)
-    if (item.type === 'gate') return gateQuestions.value.find(q => q.id === item.id)
-    return null
+    let raw = null
+    let key = null
+    if (item.type === 'normal') {
+      raw = questions.value.find(q => q.id === item.id)
+      key = `n-${item.id}`
+    } else if (item.type === 'gate') {
+      raw = gateQuestions.value.find(q => q.id === item.id)
+      key = `g-${item.id}`
+    }
+    if (!raw) return null
+
+    // 门控题题干里的 {SEAT4} 替换为准考证号后 4 位（考场末2位+座位2位）
+    let stem = raw.stem
+    if (item.type === 'gate' && typeof stem === 'string' && stem.includes('{SEAT4}')) {
+      const seat4 = (ticketNumber.value || '').slice(-4) || '0000'
+      stem = stem.split('{SEAT4}').join(seat4)
+    }
+
+    const order = optionOrderMap.value[key]
+    if (!order || order.length !== raw.options.length) {
+      return stem === raw.stem ? raw : { ...raw, stem }
+    }
+
+    const displayLabels = ['A', 'B', 'C', 'D']
+    const shuffledOptions = order.map((origLabel, idx) => {
+      const orig = raw.options.find(o => o.label === origLabel)
+      if (!orig) return null
+      return {
+        ...orig,
+        label: displayLabels[idx],        // 新的显示字母
+        _origLabel: origLabel             // 保留原始字母用于评分反查
+      }
+    }).filter(Boolean)
+
+    return { ...raw, stem, options: shuffledOptions }
+  }
+
+  // 将显示字母（A/B/C/D）映射回原始字母
+  function resolveOriginalLabel(item, displayLabel) {
+    if (!item) return displayLabel
+    const key = item.type === 'normal' ? `n-${item.id}` : `g-${item.id}`
+    const order = optionOrderMap.value[key]
+    if (!order) return displayLabel
+    const idx = ['A', 'B', 'C', 'D'].indexOf(displayLabel)
+    if (idx < 0 || idx >= order.length) return displayLabel
+    return order[idx]
   }
 
   // 初始化数据
@@ -108,12 +194,21 @@ export const useExamStore = defineStore('exam', () => {
       currentIndex.value = saved.currentIndex || 0
       runSequence.value = saved.runSequence || qRes.questions.map(q => ({ type: 'normal', id: q.id }))
       g1Inserted.value = saved.g1Inserted || false
-      g2Inserted.value = saved.g2Inserted || false
+      bugLotteryWon.value = saved.bugLotteryWon || false
+      firstAnswerAt.value = saved.firstAnswerAt || 0
+      changeCount.value = saved.changeCount || 0
       isFallback.value = saved.isFallback || false
       envelopeSeen.value = saved.envelopeSeen || false
+      optionOrderMap.value = saved.optionOrderMap || {}
+      // 若旧存档没有乱序映射，现场补一份
+      if (!saved.optionOrderMap || Object.keys(saved.optionOrderMap).length === 0) {
+        regenerateOptionOrder()
+      }
     } else {
       // 初始化运行序列（仅常规题）
       runSequence.value = qRes.questions.map(q => ({ type: 'normal', id: q.id }))
+      // 初始化选项乱序
+      regenerateOptionOrder()
     }
 
     // 监听关键状态变化，自动持久化
@@ -127,9 +222,12 @@ export const useExamStore = defineStore('exam', () => {
         currentIndex: currentIndex.value,
         runSequence: runSequence.value,
         g1Inserted: g1Inserted.value,
-        g2Inserted: g2Inserted.value,
+        bugLotteryWon: bugLotteryWon.value,
+        firstAnswerAt: firstAnswerAt.value,
+        changeCount: changeCount.value,
         isFallback: isFallback.value,
-        envelopeSeen: envelopeSeen.value
+        envelopeSeen: envelopeSeen.value,
+        optionOrderMap: optionOrderMap.value
       }),
       (state) => { saveState(state) },
       { deep: true }
@@ -137,42 +235,75 @@ export const useExamStore = defineStore('exam', () => {
   }
 
   // 按题目 ID 作答（滚动模式使用）
+  // optionLabel 是用户点击时看到的显示字母（A/B/C/D），需转换回原始字母再存储与评分
   function answerQuestion(questionId, questionType, optionLabel) {
+    const item = { type: questionType, id: questionId }
+    const origLabel = resolveOriginalLabel(item, optionLabel)
+
+    // 记录首次答题时间（用于计算平均答题速度 → 水豚触发）
+    if (firstAnswerAt.value === 0) {
+      firstAnswerAt.value = Date.now()
+    }
+
     if (questionType === 'normal') {
-      if (answers.value[questionId] === optionLabel) {
+      const prev = answers.value[questionId]
+      if (prev === origLabel) {
+        // 反选涂销（已选的又点了一次）→ 记一次「犹豫」
         const { [questionId]: _, ...rest } = answers.value
-        answers.value = rest // 反选涂销（整体替换确保响应性）
+        answers.value = rest
+        changeCount.value += 1
       } else {
-        answers.value = { ...answers.value, [questionId]: optionLabel }
-        checkGateTrigger(questionId, optionLabel)
+        if (prev !== undefined) {
+          // 改选（已有答案，改成别的）→ 记一次「犹豫」
+          changeCount.value += 1
+        }
+        answers.value = { ...answers.value, [questionId]: origLabel }
+        checkGateTrigger(questionId, origLabel)
       }
     } else if (questionType === 'gate') {
-      if (gateAnswers.value[questionId] === optionLabel) {
+      if (gateAnswers.value[questionId] === origLabel) {
         const { [questionId]: _, ...rest } = gateAnswers.value
         gateAnswers.value = rest
       } else {
-        gateAnswers.value = { ...gateAnswers.value, [questionId]: optionLabel }
+        gateAnswers.value = { ...gateAnswers.value, [questionId]: origLabel }
       }
     }
 
-    // 检查是否全部答完
-    if (answeredCount.value >= runSequence.value.length) {
+    // 检查是否全部普通题答完（BUG 题不算进度，答不答都能进结果页）
+    if (Object.keys(answers.value).length >= questions.value.length) {
       envelopeSeen.value = false
       setTimeout(() => { view.value = 'result' }, 1000)
     }
+  }
+
+  // 原始 label 转显示 label（供视图层高亮选中态）
+  function toDisplayLabel(item, originalLabel) {
+    if (!item || !originalLabel) return originalLabel
+    const key = item.type === 'normal' ? `n-${item.id}` : `g-${item.id}`
+    const order = optionOrderMap.value[key]
+    if (!order) return originalLabel
+    const idx = order.indexOf(originalLabel)
+    if (idx < 0) return originalLabel
+    return ['A', 'B', 'C', 'D'][idx] || originalLabel
   }
 
   // 回答当前题（保留旧接口兼容）
   function answer(optionLabel) {
     const item = currentItem.value
     if (!item) return
+    const origLabel = resolveOriginalLabel(item, optionLabel)
+
+    // 记录首次答题时间
+    if (firstAnswerAt.value === 0) {
+      firstAnswerAt.value = Date.now()
+    }
 
     if (item.type === 'normal') {
-      answers.value[item.id] = optionLabel
+      answers.value[item.id] = origLabel
       // 检查门控触发
-      checkGateTrigger(item.id, optionLabel)
+      checkGateTrigger(item.id, origLabel)
     } else if (item.type === 'gate') {
-      gateAnswers.value[item.id] = optionLabel
+      gateAnswers.value[item.id] = origLabel
     }
 
     // 前进
@@ -187,22 +318,10 @@ export const useExamStore = defineStore('exam', () => {
 
   // 检查是否需要插入门控题
   function checkGateTrigger(questionId, optionLabel) {
-    // G1: 在第12题之后检查 E1 累计值（情绪表达强度溢出 → BUG修复局）
-    if (questionId === 12 && !g1Inserted.value) {
-      const e1Total = calcDimensionTotal('E1')
-      if (e1Total >= 12) {
-        insertGateAfter('G1', 12)
-        g1Inserted.value = true
-      }
-    }
-
-    // G2: 在第14题之后检查 So3 累计值
-    if (questionId === 14 && !g2Inserted.value) {
-      const so3Total = calcDimensionTotal('So3')
-      if (so3Total >= 10) {
-        insertGateAfter('G2', 14)
-        g2Inserted.value = true
-      }
+    // 只在答完 Q15 时检查：如果开考时抽中了 BUG 彩票，就插入 G1（BUG 题）
+    if (questionId === 15 && !g1Inserted.value && bugLotteryWon.value) {
+      insertGateAfter('G1', 15)
+      g1Inserted.value = true
     }
   }
 
@@ -236,9 +355,27 @@ export const useExamStore = defineStore('exam', () => {
     return total
   }
 
-  // 开始考试
+  // 开始考试（此刻 5% 概率抽中 BUG 彩票）
   function startExam() {
+    // 只在第一次开考时抽签（刷新恢复时不重抽）
+    bugLotteryWon.value = Math.random() < 0.05
     view.value = 'exam'
+  }
+
+  // 水豚触发判定：
+  //   · 平均答题速度 ≤ 3 秒/题
+  //   · 整个过程零反选、零改选（changeCount === 0）
+  //   · 已答完 ≥ 15 题
+  const CAPYBARA_AVG_MS = 3000
+  const CAPYBARA_MIN_Q = 15
+  function isCapybaraTriggered() {
+    const answeredN = Object.keys(answers.value).length
+    if (answeredN < CAPYBARA_MIN_Q) return false
+    if (!firstAnswerAt.value) return false
+    if (changeCount.value > 0) return false
+    const elapsed = Date.now() - firstAnswerAt.value
+    const avg = elapsed / answeredN
+    return avg <= CAPYBARA_AVG_MS
   }
 
   // 触发空闲 fallback，直接跳转结果页
@@ -258,10 +395,13 @@ export const useExamStore = defineStore('exam', () => {
     ticketNumber.value = generateTicket()
     currentIndex.value = 0
     g1Inserted.value = false
-    g2Inserted.value = false
+    bugLotteryWon.value = false
+    firstAnswerAt.value = 0
+    changeCount.value = 0
     isFallback.value = false
     envelopeSeen.value = false
     runSequence.value = questions.value.map(q => ({ type: 'normal', id: q.id }))
+    regenerateOptionOrder()
   }
 
   return {
@@ -269,6 +409,8 @@ export const useExamStore = defineStore('exam', () => {
     answers, gateAnswers, currentIndex, playerName, ticketNumber, examLetter,
     runSequence, currentItem, totalCount, isFinished, progress, answeredCount,
     isFallback, envelopeSeen,
-    getQuestionObj, init, answer, answerQuestion, startExam, restart, triggerFallback, calcDimensionTotal
+    bugLotteryWon, firstAnswerAt, changeCount,
+    getQuestionObj, init, answer, answerQuestion, startExam, restart, triggerFallback, calcDimensionTotal,
+    toDisplayLabel, isCapybaraTriggered
   }
 })

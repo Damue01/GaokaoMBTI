@@ -15,11 +15,7 @@ const props = defineProps({
 const chartRef = ref(null)
 let chart = null
 
-const dimensions = [
-  'S1', 'S2', 'S3', 'E1', 'E2', 'E3',
-  'A1', 'A2', 'A3', 'Ac1', 'Ac2', 'Ac3',
-  'So1', 'So2', 'So3'
-]
+const dimensions = ['C', 'P', 'D', 'So']
 
 function buildOption() {
   const indicator = dimensions.map(d => ({

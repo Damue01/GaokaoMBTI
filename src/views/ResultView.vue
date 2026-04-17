@@ -184,6 +184,24 @@ onMounted(() => {
       result: store.results.fallback_result,
       isGate: false
     }
+  } else if (store.isCapybaraTriggered && store.isCapybaraTriggered() && store.results.gate_results && store.results.gate_results['亚太水豚研究所']) {
+    // 速答触发 → 水豚（优先级高于正常评分，但低于 BUG 局 / fallback）
+    // 若用户同时选中了 BUG 选项，computeResult 仍会返回 BUG 局，这里要先判 BUG
+    const normalResult = computeResult({
+      answers: store.answers,
+      gateAnswers: store.gateAnswers,
+      questions: store.questions,
+      gateQuestions: store.gateQuestions,
+      resultsData: store.results
+    })
+    if (normalResult && normalResult.isGate) {
+      resultData.value = normalResult
+    } else {
+      resultData.value = {
+        result: store.results.gate_results['亚太水豚研究所'],
+        isGate: true
+      }
+    }
   } else {
     resultData.value = computeResult({
       answers: store.answers,

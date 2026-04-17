@@ -1,9 +1,10 @@
 <template>
-  <div class="question-card" :class="{ 'question-card--gate': isGate }">
-    <p class="question-card__stem">
-      <span v-if="!isGate" class="question-card__number">{{ displayNumber }}.</span>
-      {{ question.stem }}
-      <span v-if="!isGate" class="question-card__bracket">（<span class="question-card__answer" ref="answerSpanRef">
+  <div class="question-card" :class="{ 'question-card--gate': isGate, 'question-card--bug': isBug }">
+    <p class="question-card__stem" :class="{ 'question-card__stem--bug': isBug }">
+      <span v-if="!isGate && !isBug" class="question-card__number">{{ displayNumber }}.</span>
+      <span v-if="isBug" class="question-card__number question-card__number--bug">※</span>
+      <span class="question-card__stem-text" v-html="renderedStem"></span>
+      <span v-if="!isGate && !isBug" class="question-card__bracket">（<span class="question-card__answer" ref="answerSpanRef">
         <template v-if="bracketHistory.length === 0">&nbsp;&nbsp;</template>
         <template v-else>
           <span class="answer-item answer-item--first" :style="getBracketStyle(0)">
@@ -32,7 +33,7 @@
         v-for="opt in question.options"
         :key="opt.label"
         class="option-item"
-        :class="{ 'option-item--selected': selected === opt.label }"
+        :class="{ 'option-item--selected': selected === opt.label, 'option-item--bug': isBug }"
         @click="selectOption(opt.label)"
       >
         <span class="option-item__label">
@@ -62,6 +63,19 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['select'])
+
+// 是否 BUG 隐藏题（根据题目对象的 is_bug 字段判断）
+const isBug = computed(() => !!props.question?.is_bug)
+
+// 渲染题干：把 \n 转成 <br>，并转义 HTML 特殊字符（仅用于 BUG 题，普通题也安全）
+const renderedStem = computed(() => {
+  const raw = props.question?.stem || ''
+  const escaped = raw
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+  return escaped.split('\n').join('<br>')
+})
 
 const optionMarks = ref({})
 const bracketHistory = ref([])

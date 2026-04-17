@@ -2,11 +2,7 @@
  * 评分引擎 — Manhattan 距离匹配 + 门控彩蛋覆盖
  */
 
-const ALL_DIMENSIONS = [
-  'S1', 'S2', 'S3', 'E1', 'E2', 'E3',
-  'A1', 'A2', 'A3', 'Ac1', 'Ac2', 'Ac3',
-  'So1', 'So2', 'So3'
-]
+const ALL_DIMENSIONS = ['C', 'P', 'D', 'So']
 
 // 默认值：未被测到的维度默认为 2（中间值）
 const DEFAULT_VALUE = 2
@@ -15,7 +11,7 @@ const DEFAULT_VALUE = 2
  * 从答题记录中提取用户的15维向量
  * @param {Object} answers - { questionId: optionLabel }
  * @param {Array} questions - 题目数组
- * @returns {Object} - { S1: 2.5, S2: 3, ... }
+ * @returns {Object} - { C: 2.5, P: 3, ... }
  */
 export function extractUserVector(answers, questions) {
   // 每个维度收集所有得分

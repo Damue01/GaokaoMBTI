@@ -16,10 +16,6 @@
     </div>
 
     <div v-if="store.view === 'start'" class="exam-action-block">
-      <div class="exam-emergency-notice" role="alert">
-        【考场通知】<br />
-        当前录取评价体系与预期存在一定偏移，巡考组正在紧急校准中。修复期间，考生可自由活动。
-      </div>
       <button class="btn btn--primary" @click="handleStart">
         <span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 开 始 答 题
       </button>
@@ -44,7 +40,7 @@
     </div>
 
     <PageFooter v-if="store.view === 'start'" :page="1" :total="4" />
-    <PageFooter v-if="store.view === 'exam'" :answered="store.answeredCount" :total="store.runSequence.length" />
+    <PageFooter v-if="store.view === 'exam'" :answered="store.answeredCount" :total="store.questions.length" />
   </div>
 </template>
 
@@ -110,9 +106,11 @@ function getQuestion(item) {
 }
 
 function getAnswer(item) {
-  if (item.type === 'normal') return store.answers[item.id] || null
-  if (item.type === 'gate') return store.gateAnswers[item.id] || null
-  return null
+  const raw = item.type === 'normal'
+    ? (store.answers[item.id] || null)
+    : (item.type === 'gate' ? (store.gateAnswers[item.id] || null) : null)
+  if (!raw) return null
+  return store.toDisplayLabel(item, raw)
 }
 
 // 管理每个题目的 DOM ref
@@ -144,19 +142,6 @@ async function handleStart() {
   text-align: center;
 }
 
-.exam-emergency-notice {
-  margin: 0 auto 24px;
-  max-width: 580px;
-  padding: 0 16px;
-  color: var(--exam-red);
-  font-family: var(--font-hei);
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 1.8;
-  letter-spacing: 0.02em;
-  text-align: center;
-}
-
 .exam-content {
   animation: fadeIn 0.6s ease-out;
   padding-top: 20px;
@@ -171,11 +156,6 @@ async function handleStart() {
   .exam-action-block {
     margin-top: 28px;
     margin-bottom: 32px;
-  }
-
-  .exam-emergency-notice {
-    font-size: 14px;
-    margin-bottom: 20px;
   }
 }
 </style>

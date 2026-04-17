@@ -167,6 +167,38 @@
   margin-right: 4px;
 }
 
+/* BUG 隐藏题：覆盖 gate 的【附加题】标签，使用 ※ 做题号；题干保留换行 */
+.question-card--bug .question-card__stem::before {
+  content: '';
+  display: none;
+}
+
+.question-card--bug {
+  border-style: solid;
+  border-color: var(--exam-black);
+}
+
+.question-card__stem--bug {
+  text-indent: 0;
+  white-space: normal;
+}
+
+.question-card__stem--bug .question-card__stem-text {
+  display: inline;
+}
+
+.question-card__number--bug {
+  font-family: var(--font-hei);
+  font-weight: bold;
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+.option-item--bug {
+  font-family: var(--font-song);
+  letter-spacing: 0.02em;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
