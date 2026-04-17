@@ -15,7 +15,11 @@
       <p class="exam-notice__item"><span class="exam-notice__num">4.</span> 考生必须保持答题卡的整洁。考试结束后，将试卷和答题卡一并交回。</p>
     </div>
 
-    <div v-if="store.view === 'start'" style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+    <div v-if="store.view === 'start'" class="exam-action-block">
+      <div class="exam-emergency-notice" role="alert">
+        【考场通知】<br />
+        当前录取评价体系与预期存在一定偏移，巡考组正在紧急校准中。修复期间，考生可自由活动。
+      </div>
       <button class="btn btn--primary" @click="handleStart">
         <span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 开 始 答 题
       </button>
@@ -134,6 +138,25 @@ async function handleStart() {
 </script>
 
 <style scoped>
+.exam-action-block {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.exam-emergency-notice {
+  margin: 0 auto 24px;
+  max-width: 580px;
+  padding: 0 16px;
+  color: var(--exam-red);
+  font-family: var(--font-hei);
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
 .exam-content {
   animation: fadeIn 0.6s ease-out;
   padding-top: 20px;
@@ -141,5 +164,17 @@ async function handleStart() {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .exam-action-block {
+    margin-top: 28px;
+    margin-bottom: 32px;
+  }
+
+  .exam-emergency-notice {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
 }
 </style>

@@ -10,7 +10,13 @@
       <p class="exam-notice__item"><span class="exam-notice__num">4.</span> 考生必须保持答题卡的整洁。考试结束后，将试卷和答题卡一并交回。</p>
     </div>
 
-    <div style="text-align: center; margin-top: 40px;">
+    <div class="exam-action-block">
+      <div class="exam-supplement" role="note" aria-label="考场说明">
+        <p class="exam-supplement__title">考场说明：</p>
+        <p class="exam-supplement__content">
+          当前录取评价体系存在一定问题，正在紧急修复，考生可以自由活动。
+        </p>
+      </div>
       <button class="btn btn--primary" @click="store.startExam()">
         <span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 开 始 答 题
       </button>
@@ -27,3 +33,53 @@ import PageFooter from '../components/PageFooter.vue'
 
 const store = useExamStore()
 </script>
+
+<style scoped>
+.exam-action-block {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.exam-supplement {
+  display: block;
+  width: min(100%, 640px);
+  margin: 0 auto 20px;
+  padding: 12px 18px;
+  text-align: left;
+  border-top: 1px solid rgba(192, 57, 43, 0.5);
+  border-bottom: 1px solid rgba(192, 57, 43, 0.5);
+  background: rgba(252, 248, 241, 0.92);
+}
+
+.exam-supplement__title {
+  margin-bottom: 4px;
+  color: var(--exam-red);
+  font-family: var(--font-song);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.exam-supplement__content {
+  color: var(--exam-black);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  text-indent: 2em;
+}
+
+@media (max-width: 640px) {
+  .exam-action-block {
+    margin-top: 28px;
+  }
+
+  .exam-supplement {
+    margin-bottom: 16px;
+    padding: 10px 14px;
+  }
+
+  .exam-supplement__content {
+    font-size: 0.9rem;
+    text-indent: 0;
+  }
+}
+</style>

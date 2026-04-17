@@ -60,6 +60,19 @@ export function manhattanDistance(vecA, vecB) {
 }
 
 /**
+ * 签名维度距离：只计算大学坐标 ≠ 2 的维度，归一化
+ */
+export function signatureDistance(userVec, uniCoords) {
+  const sigDims = ALL_DIMENSIONS.filter(d => uniCoords[d] !== DEFAULT_VALUE)
+  if (sigDims.length === 0) return manhattanDistance(userVec, uniCoords)
+  let dist = 0
+  sigDims.forEach(d => {
+    dist += Math.abs((userVec[d] || DEFAULT_VALUE) - (uniCoords[d] || DEFAULT_VALUE))
+  })
+  return dist / sigDims.length
+}
+
+/**
  * 匹配最近的大学
  * @param {Object} userVector - 用户15维向量
  * @param {Array} universities - 大学数组（含 coordinates 字段）
@@ -68,7 +81,7 @@ export function manhattanDistance(vecA, vecB) {
 export function matchUniversity(userVector, universities) {
   const allDistances = universities.map(uni => ({
     university: uni,
-    distance: manhattanDistance(userVector, uni.coordinates)
+    distance: signatureDistance(userVector, uni.coordinates)
   }))
   allDistances.sort((a, b) => a.distance - b.distance)
   return {
