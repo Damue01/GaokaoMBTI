@@ -310,29 +310,7 @@ async function sharePoster() {
       canvas = await html2canvas(el, { ...baseOpts, scale: 1 })
     }
 
-    const dataUrl = await canvasToPngUrl(canvas)
-
-    // 移动端尝试使用系统分享
-    if (isMobile && navigator.share) {
-      try {
-        const blob = await (await fetch(dataUrl)).blob()
-        const file = new File([blob], 'admission.png', { type: 'image/png' })
-        if (navigator.canShare?.({ files: [file] })) {
-          await navigator.share({ files: [file], title: '录取通知书' })
-          return
-        }
-      } catch (shareErr) {
-        if (shareErr.name === 'AbortError') {
-          alert(getPosterErrorMessage(shareErr))
-          return
-        }
-        console.warn('系统分享失败，回退到图片预览', shareErr)
-        alert(getPosterErrorMessage(shareErr, { stage: 'share' }))
-        // 分享 API 不可用，回退到显示图片
-      }
-    }
-
-    posterSrc.value = dataUrl
+    posterSrc.value = await canvasToPngUrl(canvas)
   } catch (e) {
     console.error('海报生成失败', e)
     alert(getPosterErrorMessage(e))
