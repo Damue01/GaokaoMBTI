@@ -281,7 +281,6 @@ async function sharePoster() {
   // 等待 QR code 和字体渲染完成，移动端多等一些
   await new Promise(r => setTimeout(r, isMobile ? 1200 : 600))
 
-  let overlay = null
   try {
     const el = posterRef.value?.$el
     if (!el) {
@@ -293,23 +292,6 @@ async function sharePoster() {
       alert(getPosterErrorMessage(new Error(`invalid poster size: ${el.offsetWidth}x${el.offsetHeight}`), { stage: 'invalid-size' }))
       return
     }
-
-    // 不移动 DOM（避免 canvas/QR 丢失上下文），仅临时改样式让 iOS WebKit 真正绘制
-    const savedCss = el.style.cssText
-    el.style.position = 'fixed'
-    el.style.left = '0'
-    el.style.top = '0'
-    el.style.zIndex = '99999'
-    el.style.pointerEvents = 'none'
-
-    // 用遮罩层挡住海报，防止用户看到闪烁，同时保持元素对 html2canvas 可见
-    overlay = document.createElement('div')
-    overlay.style.cssText = 'position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:100000;background:#f5f0e8;pointer-events:none;'
-    document.body.appendChild(overlay)
-
-    // 强制两帧重排，确保 iOS 完成绘制
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
-    await new Promise(r => setTimeout(r, 150))
 
     let canvas
     const baseOpts = {
@@ -324,14 +306,9 @@ async function sharePoster() {
     try {
       canvas = await html2canvas(el, { ...baseOpts, scale: isMobile ? 1.5 : 2 })
     } catch (firstErr) {
-      // 降级：用 scale=1 重试
       console.warn('html2canvas 首次失败，降级重试', firstErr)
       canvas = await html2canvas(el, { ...baseOpts, scale: 1 })
     }
-
-    // 还原样式并移除遮罩
-    el.style.cssText = savedCss
-    overlay.remove()
 
     const dataUrl = await canvasToPngUrl(canvas)
 
@@ -360,7 +337,6 @@ async function sharePoster() {
     console.error('海报生成失败', e)
     alert(getPosterErrorMessage(e))
   } finally {
-    if (overlay) overlay.remove()
     posterVisible.value = false
   }
 }
