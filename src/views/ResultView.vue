@@ -312,17 +312,26 @@ async function sharePoster() {
     }
 
     let canvas
+    const scale = isMobile ? 1.5 : 2
     const baseOpts = {
-      backgroundColor: null,
+      backgroundColor: '#ffffff',
       useCORS: true,
       allowTaint: true,
       logging: false,
+      scale,
+      // 精确裁剪到元素的 border-box，避免 border 外出现白边
+      x: el.offsetLeft,
+      y: el.offsetTop,
       width: el.offsetWidth,
       height: el.offsetHeight,
+      scrollX: -el.offsetLeft,
+      scrollY: -el.offsetTop,
+      windowWidth: el.offsetLeft + el.offsetWidth,
+      windowHeight: el.offsetTop + el.offsetHeight,
     }
 
     try {
-      canvas = await html2canvas(el, { ...baseOpts, scale: isMobile ? 1.5 : 2 })
+      canvas = await html2canvas(el, baseOpts)
     } catch (firstErr) {
       console.warn('html2canvas 首次失败，降级重试', firstErr)
       canvas = await html2canvas(el, { ...baseOpts, scale: 1 })
