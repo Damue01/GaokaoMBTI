@@ -215,8 +215,10 @@ async function sharePoster() {
   posterVisible.value = true
   await nextTick()
 
-  // 等待 QR code 和字体渲染完成
-  await new Promise(r => setTimeout(r, 600))
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
+  // 等待 QR code 和字体渲染完成，移动端多等一些
+  await new Promise(r => setTimeout(r, isMobile ? 1200 : 600))
 
   try {
     const el = posterRef.value?.$el
@@ -225,38 +227,57 @@ async function sharePoster() {
       return
     }
 
-    // 临时挂到 body 上，避免父容器影响布局和截图区域
-    const parent = el.parentNode
-    const nextSibling = el.nextSibling
-    document.body.appendChild(el)
+    // 不移动 DOM（避免 canvas/QR 丢失上下文），仅临时改样式让 iOS WebKit 真正绘制
+    const savedCss = el.style.cssText
+    el.style.position = 'fixed'
     el.style.left = '0'
     el.style.top = '0'
-    el.style.position = 'fixed'
-    el.style.zIndex = '-1'
-    await new Promise(r => setTimeout(r, 100))
+    el.style.zIndex = '99999'
+    el.style.pointerEvents = 'none'
 
-    const canvas = await html2canvas(el, {
+    // 强制两帧重排，确保 iOS 完成绘制
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)))
+    await new Promise(r => setTimeout(r, 150))
+
+    let canvas
+    const baseOpts = {
       backgroundColor: '#ffffff',
-      scale: 2,
       useCORS: true,
       allowTaint: true,
       logging: false,
       width: el.offsetWidth,
-      height: el.offsetHeight
-    })
-
-    // 还原到原位
-    el.style.left = ''
-    el.style.top = ''
-    el.style.position = ''
-    el.style.zIndex = ''
-    if (nextSibling) {
-      parent.insertBefore(el, nextSibling)
-    } else {
-      parent.appendChild(el)
+      height: el.offsetHeight,
     }
 
-    posterSrc.value = canvas.toDataURL('image/png')
+    try {
+      canvas = await html2canvas(el, { ...baseOpts, scale: isMobile ? 1.5 : 2 })
+    } catch (firstErr) {
+      // 降级：用 scale=1 重试
+      console.warn('html2canvas 首次失败，降级重试', firstErr)
+      canvas = await html2canvas(el, { ...baseOpts, scale: 1 })
+    }
+
+    // 还原样式
+    el.style.cssText = savedCss
+
+    const dataUrl = canvas.toDataURL('image/png')
+
+    // 移动端尝试使用系统分享
+    if (isMobile && navigator.share) {
+      try {
+        const blob = await (await fetch(dataUrl)).blob()
+        const file = new File([blob], 'admission.png', { type: 'image/png' })
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ files: [file], title: '录取通知书' })
+          return
+        }
+      } catch (shareErr) {
+        if (shareErr.name === 'AbortError') return
+        // 分享 API 不可用，回退到显示图片
+      }
+    }
+
+    posterSrc.value = dataUrl
   } catch (e) {
     console.error('海报生成失败', e)
     alert('海报生成失败，请尝试截图分享')
