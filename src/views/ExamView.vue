@@ -161,6 +161,7 @@ async function handleStart() {
   animation: fadeIn 0.6s ease-out;
   padding-top: 20px;
 }
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }

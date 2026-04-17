@@ -1,0 +1,1166 @@
+{
+  "generatedAt": "2026-04-17T07:20:36.258Z",
+  "sourceFile": "public/questions.json",
+  "totalQuestions": 20,
+  "totalOptions": 80,
+  "choices": [
+    {
+      "key": "1",
+      "id": "jinghua",
+      "name": "京华大学"
+    },
+    {
+      "key": "2",
+      "id": "gelunbiya",
+      "name": "鸽伦比亚大学"
+    },
+    {
+      "key": "3",
+      "id": "malou",
+      "name": "吗喽理工大学"
+    },
+    {
+      "key": "4",
+      "id": "sitanfo",
+      "name": "斯坦佛大学"
+    },
+    {
+      "key": "5",
+      "id": "jiazhou",
+      "name": "加州大学波及你分校"
+    },
+    {
+      "key": "6",
+      "id": "solo_anxiety",
+      "name": "焦虑，但没有波及其他人"
+    },
+    {
+      "key": "7",
+      "id": "drama",
+      "name": "戏精"
+    },
+    {
+      "key": "8",
+      "id": "custom",
+      "name": "自定义输入"
+    }
+  ],
+  "records": [
+    {
+      "questionId": 1,
+      "section": 1,
+      "stem": "语文作文已经写了 12 分钟，考场里只剩翻页和空调出风口的噪音。你的标题写得像一篇即将载入高考历史的满分作文标杆，但第一段第一个字都写不下去。你会：",
+      "optionLabel": "A",
+      "optionText": "果断放弃“写出传世名篇”的生硬幻想，在草稿纸上飞速列出三个朴实无华的分论点。阅卷只有短短几十秒，清晰的得分骨架永远比华丽辞藻实在得多。",
+      "dimensionMap": {
+        "S2": 4,
+        "E1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 1,
+      "section": 1,
+      "stem": "语文作文已经写了 12 分钟，考场里只剩翻页和空调出风口的噪音。你的标题写得像一篇即将载入高考历史的满分作文标杆，但第一段第一个字都写不下去。你会：",
+      "optionLabel": "B",
+      "optionText": "看着秒针一格格跳动，脑门疯狂冒冷汗。最后哆嗦着先写下一句“有人说，青春是一场盛大的奔赴”，哪怕明知道这句话像从2014年作文素材大全里逃出来的。",
+      "dimensionMap": {
+        "S2": 3,
+        "E1": 2
+      },
+      "selectedId": "custom",
+      "selectedName": "自定义输入",
+      "customText": "就是普通的人，好像都不匹配"
+    },
+    {
+      "questionId": 1,
+      "section": 1,
+      "stem": "语文作文已经写了 12 分钟，考场里只剩翻页和空调出风口的噪音。你的标题写得像一篇即将载入高考历史的满分作文标杆，但第一段第一个字都写不下去。你会：",
+      "optionLabel": "C",
+      "optionText": "甚至想在开头写上“阅卷老师您好，当您看到这段文字时，我已经在这个枯燥的考场里死去了”，试图用极其前卫疼痛的意识流自白强行震撼老师的灵魂。",
+      "dimensionMap": {
+        "S2": 2,
+        "E1": 2
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 1,
+      "section": 1,
+      "stem": "语文作文已经写了 12 分钟，考场里只剩翻页和空调出风口的噪音。你的标题写得像一篇即将载入高考历史的满分作文标杆，但第一段第一个字都写不下去。你会：",
+      "optionLabel": "D",
+      "optionText": "彻底疯狂，干脆在卷面上默写能想起来的所有陈奕迅歌词和麻辣烫菜谱，试图把这篇作文变成充满后现代解构主义的千禧年精神病考场实录。",
+      "dimensionMap": {
+        "S2": 1,
+        "E1": 4
+      },
+      "selectedId": "malou",
+      "selectedName": "吗喽理工大学",
+      "customText": ""
+    },
+    {
+      "questionId": 2,
+      "section": 1,
+      "stem": "数学最后一道大题像故意写给外星文明的公开信，你已经盯了它 11 分钟，草稿纸上只留下两个辅助线，外加一片箭头、圈圈和潦草数字混杂成的民间符咒。你的决定是：",
+      "optionLabel": "A",
+      "optionText": "瞬间意识到这是命题组留给未来菲尔兹奖得主的彩蛋，而我只是个想上大学的凡人。写下“解”骗走步骤分，头也不回地去查前两页的选择题。",
+      "dimensionMap": {
+        "Ac1": 1,
+        "S1": 1
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 2,
+      "section": 1,
+      "stem": "数学最后一道大题像故意写给外星文明的公开信，你已经盯了它 11 分钟，草稿纸上只留下两个辅助线，外加一片箭头、圈圈和潦草数字混杂成的民间符咒。你的决定是：",
+      "optionLabel": "B",
+      "optionText": "绝望地咬着笔头，眼眶发酸地看着时间流逝。明知做不出来但就是不敢放手，死死盯着题目祈祷这串乱码能突然在脑子里拼成熟悉的公式。",
+      "dimensionMap": {
+        "Ac1": 2,
+        "S1": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 2,
+      "section": 1,
+      "stem": "数学最后一道大题像故意写给外星文明的公开信，你已经盯了它 11 分钟，草稿纸上只留下两个辅助线，外加一片箭头、圈圈和潦草数字混杂成的民间符咒。你的决定是：",
+      "optionLabel": "C",
+      "optionText": "彻底与命题人建立私人恩怨，觉得自己像个反抗暴政的斯巴达战士。掏出红笔在卷面上写下“此题超纲，不答也罢”的绝笔，体验一种壮烈的陨落感。",
+      "dimensionMap": {
+        "Ac1": 3,
+        "S1": 3
+      },
+      "selectedId": "malou",
+      "selectedName": "吗喽理工大学",
+      "customText": ""
+    },
+    {
+      "questionId": 2,
+      "section": 1,
+      "stem": "数学最后一道大题像故意写给外星文明的公开信，你已经盯了它 11 分钟，草稿纸上只留下两个辅助线，外加一片箭头、圈圈和潦草数字混杂成的民间符咒。你的决定是：",
+      "optionLabel": "D",
+      "optionText": "掏出直尺和量角器，企图用极其暴力的物理作图法强行量出一个近似值，并在卷面上极其嚣张地写上：‘注意到，由瞪眼法可得’。",
+      "dimensionMap": {
+        "Ac1": 4,
+        "S1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 3,
+      "section": 1,
+      "stem": "监考老师在你背后停了整整五秒，你明知道自己没作弊，但这五秒足够让人类文明从石器时代发展到信息社会。你会：",
+      "optionLabel": "A",
+      "optionText": "顺理成章地借着他高大身躯挡住白炽灯反光的这五秒，舒服地转了转酸痛的颈椎。这不过是一场免费的考场VIP贴身安保体验罢了。",
+      "dimensionMap": {
+        "A3": 1,
+        "So3": 1
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 3,
+      "section": 1,
+      "stem": "监考老师在你背后停了整整五秒，你明知道自己没作弊，但这五秒足够让人类文明从石器时代发展到信息社会。你会：",
+      "optionLabel": "B",
+      "optionText": "浑身僵硬连呼吸都忘了。大脑光速排查自己刚写的卷子有没有超线、脚有没有碰到桌斗，差点吓出心脏骤停，哪怕他只是在看墙上的时间。",
+      "dimensionMap": {
+        "A3": 2,
+        "So3": 3
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 3,
+      "section": 1,
+      "stem": "监考老师在你背后停了整整五秒，你明知道自己没作弊，但这五秒足够让人类文明从石器时代发展到信息社会。你会：",
+      "optionLabel": "C",
+      "optionText": "突然用一种饱含沧桑的绝望眼神慢慢转过头，与监考老师进行了一次深情对视，仿佛在用眼神无声诉说：“你看，这就是被分数绑架碾碎的年轻人”。",
+      "dimensionMap": {
+        "A3": 3,
+        "So3": 2
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 3,
+      "section": 1,
+      "stem": "监考老师在你背后停了整整五秒，你明知道自己没作弊，但这五秒足够让人类文明从石器时代发展到信息社会。你会：",
+      "optionLabel": "D",
+      "optionText": "干脆用手把答题卡全遮住，拿过草稿纸开始聚精会神地默画全套《原神》角色图鉴，就为了看老师发现你在画雷电将军时脸上绝妙的表情。",
+      "dimensionMap": {
+        "A3": 4,
+        "So3": 4
+      },
+      "selectedId": "custom",
+      "selectedName": "自定义输入",
+      "customText": "上一个选项C选戏精，这个选项选4 斯坦佛"
+    },
+    {
+      "questionId": 4,
+      "section": 1,
+      "stem": "你还在第二面和一道极其变态的物理选择题缠斗，右边的人突然“唰”地一声翻到最后一页，那声音清脆得像是一个响亮的耳光。那一瞬间，你感觉自己像个被进度条无情碾压的NPC。你会：",
+      "optionLabel": "A",
+      "optionText": "充耳不闻，甚至战术性地喝了口水。只要他没把卷子撕了，这种考场噪音就和窗外的知了叫声一样，属于不需要大脑处理的物理背景音。",
+      "dimensionMap": {
+        "E1": 3,
+        "So1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 4,
+      "section": 1,
+      "stem": "你还在第二面和一道极其变态的物理选择题缠斗，右边的人突然“唰”地一声翻到最后一页，那声音清脆得像是一个响亮的耳光。那一瞬间，你感觉自己像个被进度条无情碾压的NPC。你会：",
+      "optionLabel": "B",
+      "optionText": "在心里疯狂脑补“他翻这么快肯定是整张面都不会做直接放弃了”，并以此勉强稳住自己发抖的手。",
+      "dimensionMap": {
+        "E1": 1,
+        "So1": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 4,
+      "section": 1,
+      "stem": "你还在第二面和一道极其变态的物理选择题缠斗，右边的人突然“唰”地一声翻到最后一页，那声音清脆得像是一个响亮的耳光。那一瞬间，你感觉自己像个被进度条无情碾压的NPC。你会：",
+      "optionLabel": "C",
+      "optionText": "故意叹口气摔下笔，向全考场营造出一种“这卷子太简单了，我已经无聊到开始找茬”的绝世学神氛围。",
+      "dimensionMap": {
+        "E1": 2,
+        "So1": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 4,
+      "section": 1,
+      "stem": "你还在第二面和一道极其变态的物理选择题缠斗，右边的人突然“唰”地一声翻到最后一页，那声音清脆得像是一个响亮的耳光。那一瞬间，你感觉自己像个被进度条无情碾压的NPC。你会：",
+      "optionLabel": "D",
+      "optionText": "注意力被彻底带跑，开始无聊地数他到底翻了多少次面，甚至在草稿纸上给他画“正”字记数。",
+      "dimensionMap": {
+        "E1": 4,
+        "So1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 5,
+      "section": 1,
+      "stem": "极其惨烈的数学考试刚刚结束，走廊上哀鸿遍野。你的死对头（平时的年级第一）面色苍白地走过来问你压轴题最后一问答案是什么，你会：",
+      "optionLabel": "A",
+      "optionText": "面不改色地报出一个确实正确的关键步骤中间值，随后立刻戴上耳机。分数已经定局，现在交流唯一的意义就是把他的心态也拉回起跑线。",
+      "dimensionMap": {
+        "So1": 2,
+        "So2": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 5,
+      "section": 1,
+      "stem": "极其惨烈的数学考试刚刚结束，走廊上哀鸿遍野。你的死对头（平时的年级第一）面色苍白地走过来问你压轴题最后一问答案是什么，你会：",
+      "optionLabel": "B",
+      "optionText": "支支吾吾不敢报答案，飞速掏出草稿纸颤抖着跟他重新对了一遍步骤，哪怕只是把等于号写歪都感觉自己整个人生已经毁了。",
+      "dimensionMap": {
+        "So1": 1,
+        "So2": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 5,
+      "section": 1,
+      "stem": "极其惨烈的数学考试刚刚结束，走廊上哀鸿遍野。你的死对头（平时的年级第一）面色苍白地走过来问你压轴题最后一问答案是什么，你会：",
+      "optionLabel": "C",
+      "optionText": "冷笑一声，拍了拍他的肩膀：'这题考了洛必达法则的变体，你没看出来吗？'强行用一堆高等数学的名词把他唬得一愣一愣的，哪怕自己只是瞎写的。",
+      "dimensionMap": {
+        "So1": 3,
+        "So2": 1
+      },
+      "selectedId": "jiazhou",
+      "selectedName": "加州大学波及你分校",
+      "customText": ""
+    },
+    {
+      "questionId": 5,
+      "section": 1,
+      "stem": "极其惨烈的数学考试刚刚结束，走廊上哀鸿遍野。你的死对头（平时的年级第一）面色苍白地走过来问你压轴题最后一问答案是什么，你会：",
+      "optionLabel": "D",
+      "optionText": "直接反问：'还有这题？我以为试卷背面印的是草稿区直接没看。'用纯粹的荒诞与摆烂去化解这种高考独有的社交绞肉机氛围。",
+      "dimensionMap": {
+        "So1": 4,
+        "So2": 4
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 6,
+      "section": 1,
+      "stem": "新一轮模考成绩被无情地贴在了黑板旁边，你赫然发现自己的名字不仅掉出了第一屏，还被一个平时只看《奶龙大战哈基米》的同桌踩在脚下。这种奇耻大辱前，你会：",
+      "optionLabel": "A",
+      "optionText": "借过他卷子扫描，发现他仅仅是连蒙对了三道理综多选题。心平气和将其归类为“阳寿做题法”，立刻低头订正自己的算错的填空。",
+      "dimensionMap": {
+        "S1": 3,
+        "E2": 2
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 6,
+      "section": 1,
+      "stem": "新一轮模考成绩被无情地贴在了黑板旁边，你赫然发现自己的名字不仅掉出了第一屏，还被一个平时只看《奶龙大战哈基米》的同桌踩在脚下。这种奇耻大辱前，你会：",
+      "optionLabel": "B",
+      "optionText": "感觉胸口挨了一记重拳，耳鸣阵阵。满世界只剩下“我退步了，是不是我的智商上限就到这了”的恐怖回音，整个下午连课本的字都看不进去一个。",
+      "dimensionMap": {
+        "S1": 2,
+        "E2": 1
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 6,
+      "section": 1,
+      "stem": "新一轮模考成绩被无情地贴在了黑板旁边，你赫然发现自己的名字不仅掉出了第一屏，还被一个平时只看《奶龙大战哈基米》的同桌踩在脚下。这种奇耻大辱前，你会：",
+      "optionLabel": "C",
+      "optionText": "一个人跑到学校顶楼天台吹风，咬破嘴唇暗暗立下毒誓：“今日之辱，来日必将百倍奉还！我就算头悬梁也要把这面子杀回来！”",
+      "dimensionMap": {
+        "S1": 1,
+        "E2": 3
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 6,
+      "section": 1,
+      "stem": "新一轮模考成绩被无情地贴在了黑板旁边，你赫然发现自己的名字不仅掉出了第一屏，还被一个平时只看《奶龙大战哈基米》的同桌踩在脚下。这种奇耻大辱前，你会：",
+      "optionLabel": "D",
+      "optionText": "当场撕下一块草稿纸写上“考神”四个字贴在同桌背后，不仅逢考必拜，甚至还想让他帮自己选几注彩票号码，彻底臣服于这种荒谬的神学力量。",
+      "dimensionMap": {
+        "S1": 4,
+        "E2": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 7,
+      "section": 1,
+      "stem": "距离交卷只剩15分钟，一道大题算到最后一步陷入了死循环。你低头看着草稿纸上那团被反复涂抹、形似乱码的公式遗迹，上面还圈了很多死不瞑目的计算。此刻你的动作是：",
+      "optionLabel": "A",
+      "optionText": "果断把最后那团死循环的草稿乱码划掉，大笔一挥写下一个极其自信的“易得”。出题人和我的缘分就到这了，体面地放过彼此，我还要留着命去救前面那140分。",
+      "dimensionMap": {
+        "Ac3": 3,
+        "S2": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 7,
+      "section": 1,
+      "stem": "距离交卷只剩15分钟，一道大题算到最后一步陷入了死循环。你低头看着草稿纸上那团被反复涂抹、形似乱码的公式遗迹，上面还圈了很多死不瞑目的计算。此刻你的动作是：",
+      "optionLabel": "B",
+      "optionText": "从乱坟岗一样的数字里强行刨线索，把每一个长得像“解”的字母全往卷子上誊抄。",
+      "dimensionMap": {
+        "Ac3": 2,
+        "S2": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 7,
+      "section": 1,
+      "stem": "距离交卷只剩15分钟，一道大题算到最后一步陷入了死循环。你低头看着草稿纸上那团被反复涂抹、形似乱码的公式遗迹，上面还圈了很多死不瞑目的计算。此刻你的动作是：",
+      "optionLabel": "C",
+      "optionText": "干脆在草稿纸边缘画起了一个吊死小人的火柴涂鸦，用纯粹的虚无主义看待这场灾难。",
+      "dimensionMap": {
+        "Ac3": 1,
+        "S2": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 7,
+      "section": 1,
+      "stem": "距离交卷只剩15分钟，一道大题算到最后一步陷入了死循环。你低头看着草稿纸上那团被反复涂抹、形似乱码的公式遗迹，上面还圈了很多死不瞑目的计算。此刻你的动作是：",
+      "optionLabel": "D",
+      "optionText": "极其暴躁地用黑笔把那团错步涂成一个死黑的墨疙瘩，力道大到差点把卷子戳破，纯粹为了抒发怒火。",
+      "dimensionMap": {
+        "Ac3": 4,
+        "S2": 1
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 8,
+      "section": 1,
+      "stem": "明天大考，你已经躺在床上，却觉得空气中仍然充满了各种对明天的厄运暗示。你无法忍受这种失控的危机感，于是你的深夜操作是：",
+      "optionLabel": "A",
+      "optionText": "立刻坐起来，拿出一张极其枯燥的物理大题强行算一遍。用大脑的高强度耗能强迫自己进入生物学宕机状态，“只要切断供血，就没有情绪”。",
+      "dimensionMap": {
+        "A1": 1
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 8,
+      "section": 1,
+      "stem": "明天大考，你已经躺在床上，却觉得空气中仍然充满了各种对明天的厄运暗示。你无法忍受这种失控的危机感，于是你的深夜操作是：",
+      "optionLabel": "B",
+      "optionText": "在一整个小时里强迫症般地检查了15次闹钟、3次准考证，在脑海里把明天“迟到、涂错卡、拉肚子”的恐怖画面全部高清预演了一遍，越演越出冷汗。",
+      "dimensionMap": {
+        "A1": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 8,
+      "section": 1,
+      "stem": "明天大考，你已经躺在床上，却觉得空气中仍然充满了各种对明天的厄运暗示。你无法忍受这种失控的危机感，于是你的深夜操作是：",
+      "optionLabel": "C",
+      "optionText": "打开备忘录，眼含热泪地写下一篇《致决战前夕的自己》的长篇小作文。被自己字里行间的“孤勇与悲壮”深深打动，带着崇高的献身感潸然泪下。",
+      "dimensionMap": {
+        "A1": 3
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 8,
+      "section": 1,
+      "stem": "明天大考，你已经躺在床上，却觉得空气中仍然充满了各种对明天的厄运暗示。你无法忍受这种失控的危机感，于是你的深夜操作是：",
+      "optionLabel": "D",
+      "optionText": "从床底摸出一包绝对不该在考前吃的变态辣火鸡面。“如果明天注定要完蛋，那我至少得保住今晚的快乐。”偷偷吃完并安详躺平。",
+      "dimensionMap": {
+        "A1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 9,
+      "section": 2,
+      "stem": "这场理综简直让人当场重开，结果开考才过了一个半小时，前排那个常年倒数第五的同学突然“刺啦”一声站起来交了。全班的窒息空气中，你的应激反应是：",
+      "optionLabel": "A",
+      "optionText": "耳朵自动过滤声音。他提前交卷唯一的实质性影响，是这个闷热教室里多出了一份可呼吸的氧气。深吸一口气继续算题。",
+      "dimensionMap": {
+        "E3": 3,
+        "So3": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 9,
+      "section": 2,
+      "stem": "这场理综简直让人当场重开，结果开考才过了一个半小时，前排那个常年倒数第五的同学突然“刺啦”一声站起来交了。全班的窒息空气中，你的应激反应是：",
+      "optionLabel": "B",
+      "optionText": "严重怀疑是自己慢到了离谱的境界，忍不住偷瞄其他人的笔速，冷汗把笔杆浸成了发涩的棒槌。",
+      "dimensionMap": {
+        "E3": 1,
+        "So3": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 9,
+      "section": 2,
+      "stem": "这场理综简直让人当场重开，结果开考才过了一个半小时，前排那个常年倒数第五的同学突然“刺啦”一声站起来交了。全班的窒息空气中，你的应激反应是：",
+      "optionLabel": "C",
+      "optionText": "恍惚间觉得他像个完成刺杀任务的绝世刺客，甚至顺手在草稿上勾勒他离去的飒爽背影，这科爱咋咋地吧。",
+      "dimensionMap": {
+        "E3": 2,
+        "So3": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 9,
+      "section": 2,
+      "stem": "这场理综简直让人当场重开，结果开考才过了一个半小时，前排那个常年倒数第五的同学突然“刺啦”一声站起来交了。全班的窒息空气中，你的应激反应是：",
+      "optionLabel": "D",
+      "optionText": "心里大喜，立刻断定这哥们是彻底放弃乱蒙的。抱着“垫底的有人兜着了”的邪恶心态，毫无心理负担地把剩下的空全填上了B。",
+      "dimensionMap": {
+        "E3": 4,
+        "So3": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 10,
+      "section": 2,
+      "stem": "你考完最烂的一科走出校门，你爸妈立马递上水、扇着风，小心翼翼又暗含期盼地试探性问出那句：“怎么样啊儿子/闺女？试卷难吗？”此时此刻你会：",
+      "optionLabel": "A",
+      "optionText": "喝了口水，平静地报出一套极度保守但逻辑严密的分数预测区间，随后顺利借坡下驴把话题引向今晚去哪吃。用绝对的控场力把父母的焦虑扼杀在摇篮里。",
+      "dimensionMap": {
+        "So2": 3,
+        "E2": 2
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 10,
+      "section": 2,
+      "stem": "你考完最烂的一科走出校门，你爸妈立马递上水、扇着风，小心翼翼又暗含期盼地试探性问出那句：“怎么样啊儿子/闺女？试卷难吗？”此时此刻你会：",
+      "optionLabel": "B",
+      "optionText": "听到这话瞬间想哭，声音已经带上了明显的颤抖：“太难了，这次肯定连一本线都保不住了……”脑海里甚至已经开始幻想今年退学去打工的悲惨画面。",
+      "dimensionMap": {
+        "So2": 2,
+        "E2": 3
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 10,
+      "section": 2,
+      "stem": "你考完最烂的一科走出校门，你爸妈立马递上水、扇着风，小心翼翼又暗含期盼地试探性问出那句：“怎么样啊儿子/闺女？试卷难吗？”此时此刻你会：",
+      "optionLabel": "C",
+      "optionText": "戏瘾发作，突然捂住肚子虚弱地靠在车门上：“其实我考到一半急性阑尾炎犯了，能活着走出来已经是生命的奇迹”，用虚构的生理病痛强行剥夺成绩的追责权。",
+      "dimensionMap": {
+        "So2": 1,
+        "E2": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 10,
+      "section": 2,
+      "stem": "你考完最烂的一科走出校门，你爸妈立马递上水、扇着风，小心翼翼又暗含期盼地试探性问出那句：“怎么样啊儿子/闺女？试卷难吗？”此时此刻你会：",
+      "optionLabel": "D",
+      "optionText": "极其豁达地一摊手：“嗨，重在参与嘛！考场上一半人直接哭出来了，能填满答题卡我已经赢了80%的人了”，主打一个死猪不怕开水烫。",
+      "dimensionMap": {
+        "So2": 4,
+        "E2": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 11,
+      "section": 2,
+      "stem": "明天十一点就可以查分了。这一夜的黑像一口无形的棺材压在心口。你盯着黑漆漆的天花板，你的终极求生策略是：",
+      "optionLabel": "A",
+      "optionText": "将手机静音并设定三个错峰查询用的防崩闹钟，顺便泡了一杯热牛奶喝下。查分是一个纯粹的读取操作，既然无法改写硬盘数据，那就不要浪费今晚的CPU算力。",
+      "dimensionMap": {
+        "E1": 3,
+        "S1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 11,
+      "section": 2,
+      "stem": "明天十一点就可以查分了。这一夜的黑像一口无形的棺材压在心口。你盯着黑漆漆的天花板，你的终极求生策略是：",
+      "optionLabel": "B",
+      "optionText": "每隔五分钟就刷一次查分网页，连晚饭都吃不下去，甚至开始干呕。在脑子里疯狂给各路神仙下跪，祈祷只要能过一本线愿意折寿十年。",
+      "dimensionMap": {
+        "E1": 2,
+        "S1": 1
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 11,
+      "section": 2,
+      "stem": "明天十一点就可以查分了。这一夜的黑像一口无形的棺材压在心口。你盯着黑漆漆的天花板，你的终极求生策略是：",
+      "optionLabel": "C",
+      "optionText": "已经选好了发朋友圈的配乐和文案，连“超常发挥的云淡风轻版”和“遗憾落榜的悲情坚韧版”都已经分档存好，随时准备接受全世界的目光洗礼。",
+      "dimensionMap": {
+        "E1": 1,
+        "S1": 2
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 11,
+      "section": 2,
+      "stem": "明天十一点就可以查分了。这一夜的黑像一口无形的棺材压在心口。你盯着黑漆漆的天花板，你的终极求生策略是：",
+      "optionLabel": "D",
+      "optionText": "直接跑去跟爸妈严肃宣布：“我刚才网上对了一下答案，我估计只有250。”只要提前把底线拉低到地心，明天拿多少分都是皆大欢喜的惊喜。",
+      "dimensionMap": {
+        "E1": 4,
+        "S1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 12,
+      "section": 2,
+      "stem": "你已经过了安检，却在走楼梯的时候突然遭遇了记忆断片，大脑瞬间像被强行拔了电源——准考证被我弄去哪了？虽然你五分钟前才把它放进口袋。你会：",
+      "optionLabel": "A",
+      "optionText": "心跳漏了半拍，但生存本能瞬间接管了心智。像机场安检仪一样从上到下执行了一套无死角的物理拍打程序。在书包夹层摸到那个硬纸壳的瞬间，心率锁死，面无表情地走进考场。",
+      "dimensionMap": {
+        "A1": 2,
+        "E1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 12,
+      "section": 2,
+      "stem": "你已经过了安检，却在走楼梯的时候突然遭遇了记忆断片，大脑瞬间像被强行拔了电源——准考证被我弄去哪了？虽然你五分钟前才把它放进口袋。你会：",
+      "optionLabel": "B",
+      "optionText": "站在楼梯口直接双腿发软，大脑疯狂回放自己把准考证“掉进冲水马桶、遗落在公交车底”的108种死法，颤抖着手把整个书包连橡皮渣都倒在地上翻找。",
+      "dimensionMap": {
+        "A1": 1,
+        "E1": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 12,
+      "section": 2,
+      "stem": "你已经过了安检，却在走楼梯的时候突然遭遇了记忆断片，大脑瞬间像被强行拔了电源——准考证被我弄去哪了？虽然你五分钟前才把它放进口袋。你会：",
+      "optionLabel": "C",
+      "optionText": "仰头看着教学楼惨白刺眼的白炽灯，觉得这是命运之神在自己登顶巅峰前设置的终极考验。深吸一口气，准备上演一出含泪死磕、补办红头文件的励志热血番。",
+      "dimensionMap": {
+        "A1": 3,
+        "E1": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 12,
+      "section": 2,
+      "stem": "你已经过了安检，却在走楼梯的时候突然遭遇了记忆断片，大脑瞬间像被强行拔了电源——准考证被我弄去哪了？虽然你五分钟前才把它放进口袋。你会：",
+      "optionLabel": "D",
+      "optionText": "直接靠在楼梯扶手上叹气：“没带就没带吧，说明老天爷物理阻止我今天去当炮灰”，甚至无聊到想跟旁边维持秩序的保安大哥唠两句家常。",
+      "dimensionMap": {
+        "A1": 4,
+        "E1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 13,
+      "section": 2,
+      "stem": "上午刚刚考完地狱级别的理综，中午饭桌上的菜大家都嚼出了断头饭的味道，三个舍友低着头一言不发。为了打破这要命的丧葬气氛，你会选择：",
+      "optionLabel": "A",
+      "optionText": "丝毫没觉得压抑。眼疾手快夹走盘里最后一块里脊肉，边嚼边在心里飞速复盘下午英语作文模板。集体懊悔内耗，远不如实打实的卡路里管用。",
+      "dimensionMap": {
+        "E3": 3,
+        "So1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 13,
+      "section": 2,
+      "stem": "上午刚刚考完地狱级别的理综，中午饭桌上的菜大家都嚼出了断头饭的味道，三个舍友低着头一言不发。为了打破这要命的丧葬气氛，你会选择：",
+      "optionLabel": "B",
+      "optionText": "连拿筷子的手都在抖，根本咽不下饭。不断用余光试探室友的情绪，心里崩溃地想：“都不说话是不是因为他们其实都考得很好，只有我一个人全填错了？”",
+      "dimensionMap": {
+        "E3": 2,
+        "So1": 1
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 13,
+      "section": 2,
+      "stem": "上午刚刚考完地狱级别的理综，中午饭桌上的菜大家都嚼出了断头饭的味道，三个舍友低着头一言不发。为了打破这要命的丧葬气氛，你会选择：",
+      "optionLabel": "C",
+      "optionText": "猛地放下筷子端起铝制饭盘，用悲壮的语气大喊：“没考好大不了重开！兄弟们，我们今晚立刻买大巴车票去看海！”试图强行给青春上演一出公路片。",
+      "dimensionMap": {
+        "E3": 1,
+        "So1": 2
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 13,
+      "section": 2,
+      "stem": "上午刚刚考完地狱级别的理综，中午饭桌上的菜大家都嚼出了断头饭的味道，三个舍友低着头一言不发。为了打破这要命的丧葬气氛，你会选择：",
+      "optionLabel": "D",
+      "optionText": "极其贱嗖嗖地咬着一块排骨打破死寂：“不是，物理最后那题那个木块它凭啥就不滚了啊？”强行用最爆雷的对答案话题点燃这桶炸药，主打同归于尽。",
+      "dimensionMap": {
+        "E3": 4,
+        "So1": 4
+      },
+      "selectedId": "jiazhou",
+      "selectedName": "加州大学波及你分校",
+      "customText": ""
+    },
+    {
+      "questionId": 14,
+      "section": 2,
+      "stem": "下午就要考文科了，平常月月拿年级前三的人，突然面露忧色地找你诉苦：“这科我昨晚书都没碰就睡了，全靠裸考。”这句话就像是一记闷棍，你的心理活动瞬间切换为：",
+      "optionLabel": "A",
+      "optionText": "内心毫无波澜，甚至贴心祝他好运。他真裸考假裸考与我无关，不妨碍我把昨晚背的模板全写上去。",
+      "dimensionMap": {
+        "So3": 1,
+        "A1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 14,
+      "section": 2,
+      "stem": "下午就要考文科了，平常月月拿年级前三的人，突然面露忧色地找你诉苦：“这科我昨晚书都没碰就睡了，全靠裸考。”这句话就像是一记闷棍，你的心理活动瞬间切换为：",
+      "optionLabel": "B",
+      "optionText": "立刻跟着一起表演凄惨：“是啊，我昨晚光顾着背那点基础，连书包都没拉开。”",
+      "dimensionMap": {
+        "So3": 3,
+        "A1": 2
+      },
+      "selectedId": "custom",
+      "selectedName": "自定义输入",
+      "customText": "都不太匹配"
+    },
+    {
+      "questionId": 14,
+      "section": 2,
+      "stem": "下午就要考文科了，平常月月拿年级前三的人，突然面露忧色地找你诉苦：“这科我昨晚书都没碰就睡了，全靠裸考。”这句话就像是一记闷棍，你的心理活动瞬间切换为：",
+      "optionLabel": "C",
+      "optionText": "表面附和，心里瞬间警铃大作：连前三都敢裸考，这科是不是有恐怖内幕？一整个中午都在恐慌中疯狂翻书。",
+      "dimensionMap": {
+        "So3": 2,
+        "A1": 1
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 14,
+      "section": 2,
+      "stem": "下午就要考文科了，平常月月拿年级前三的人，突然面露忧色地找你诉苦：“这科我昨晚书都没碰就睡了，全靠裸考。”这句话就像是一记闷棍，你的心理活动瞬间切换为：",
+      "optionLabel": "D",
+      "optionText": "不仅毫不心虚，还主动凑上去给他讲了两个极其偏门且绝对不考的超纲知识点，主打一个考前互相精神污染。",
+      "dimensionMap": {
+        "So3": 4,
+        "A1": 4
+      },
+      "selectedId": "jiazhou",
+      "selectedName": "加州大学波及你分校",
+      "customText": ""
+    },
+    {
+      "questionId": 15,
+      "section": 3,
+      "stem": "历史大题写到第三问，你已经被大航海时代、资本市场和晚清自救搞得手腕抽筋，你突然开始怀疑这一切枯燥手写的意义，王朝更替和这小小的满分之间产生了哲学冲撞。此时你会：",
+      "optionLabel": "A",
+      "optionText": "强行掐断脑子里的宏大叙事。王权霸业是历史巨人的事，但如果我现在不赶紧把这两行字编满，明天这缺失的十分就是我逝去的青春。",
+      "dimensionMap": {
+        "S3": 1,
+        "E2": 2
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 15,
+      "section": 3,
+      "stem": "历史大题写到第三问，你已经被大航海时代、资本市场和晚清自救搞得手腕抽筋，你突然开始怀疑这一切枯燥手写的意义，王朝更替和这小小的满分之间产生了哲学冲撞。此时你会：",
+      "optionLabel": "B",
+      "optionText": "越写手越抖，开始陷入“我连中国近代史事件都背不全，凭什么还能考上好大学”的深度自我鄙视，恨不得把这题做成一份晚清遗老的忏悔录。",
+      "dimensionMap": {
+        "S3": 2,
+        "E2": 1
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 15,
+      "section": 3,
+      "stem": "历史大题写到第三问，你已经被大航海时代、资本市场和晚清自救搞得手腕抽筋，你突然开始怀疑这一切枯燥手写的意义，王朝更替和这小小的满分之间产生了哲学冲撞。此时你会：",
+      "optionLabel": "C",
+      "optionText": "觉得自己正通过笔尖与数百年前的帝王将相进行灵魂对话！于是洋洋洒洒开始在答题卡上即兴作诗，全然不顾那只有屈指可数的2分历史分析点。",
+      "dimensionMap": {
+        "S3": 3,
+        "E2": 3
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 15,
+      "section": 3,
+      "stem": "历史大题写到第三问，你已经被大航海时代、资本市场和晚清自救搞得手腕抽筋，你突然开始怀疑这一切枯燥手写的意义，王朝更替和这小小的满分之间产生了哲学冲撞。此时你会：",
+      "optionLabel": "D",
+      "optionText": "直接在“事件原因”下面潇洒地写下四个大字：“顺应天命”。反正历史就是个轮回的草台班子，只要玄学解释得通，这就叫高度的唯物辩证法。",
+      "dimensionMap": {
+        "S3": 4,
+        "E2": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 16,
+      "section": 3,
+      "stem": "距离高考还有三十天，宿舍刚统一熄灯。你明明困得眼皮打架，却突然听到下铺传来了极其轻微却致命的“沙沙”翻书声，甚至还有一缕漏出来的微弱手电筒光打在地板上。面临这种生态入侵，你会：",
+      "optionLabel": "A",
+      "optionText": "面无表情地戴上早就准备好的军用级耳塞和避光眼罩。在心里冷笑：考前30天熬夜不仅破坏快速动眼期，还会导致明日记忆提取效率下降12.7%，让他卷，他在自毁。",
+      "dimensionMap": {
+        "E3": 3,
+        "So3": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 16,
+      "section": 3,
+      "stem": "距离高考还有三十天，宿舍刚统一熄灯。你明明困得眼皮打架，却突然听到下铺传来了极其轻微却致命的“沙沙”翻书声，甚至还有一缕漏出来的微弱手电筒光打在地板上。面临这种生态入侵，你会：",
+      "optionLabel": "B",
+      "optionText": "心跳瞬间飙到120，心里疯狂打鼓：“他是不是在看那套绝密的押题卷？！”僵硬地躺在床上，纠结要不要定个凌晨四点的闹钟起来弯道超车，结果生生干瞪眼到天亮。",
+      "dimensionMap": {
+        "E3": 1,
+        "So3": 3
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 16,
+      "section": 3,
+      "stem": "距离高考还有三十天，宿舍刚统一熄灯。你明明困得眼皮打架，却突然听到下铺传来了极其轻微却致命的“沙沙”翻书声，甚至还有一缕漏出来的微弱手电筒光打在地板上。面临这种生态入侵，你会：",
+      "optionLabel": "C",
+      "optionText": "在黑暗中默默叹息，觉得自己就像武侠小说里那种“不需要苦练也能一剑封喉”的天才。对下铺这种“凡人的无谓挣扎”投去一丝悲悯的目光，甚至想赋诗一首。",
+      "dimensionMap": {
+        "E3": 2,
+        "So3": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 16,
+      "section": 3,
+      "stem": "距离高考还有三十天，宿舍刚统一熄灯。你明明困得眼皮打架，却突然听到下铺传来了极其轻微却致命的“沙沙”翻书声，甚至还有一缕漏出来的微弱手电筒光打在地板上。面临这种生态入侵，你会：",
+      "optionLabel": "D",
+      "optionText": "手一滑，“不小心”把一本极其沉重的、被大家公认“全是偏难怪题”的《黄冈神卷》实体书直接“啪”地一下掉到他床上，然后用无辜的嗓音说：“哎呀，不好意思，手滑了。”",
+      "dimensionMap": {
+        "E3": 4,
+        "So3": 4
+      },
+      "selectedId": "jiazhou",
+      "selectedName": "加州大学波及你分校",
+      "customText": ""
+    },
+    {
+      "questionId": 17,
+      "section": 3,
+      "stem": "考前最后一天，班主任站在铁皮讲台上，突然一改平时的凶神恶煞，用极其煽情、甚至带点颤抖的语调说出那句：“就算你们最后只考上专科，我也一样以你们为荣……”这本该是催泪时刻，你却觉得：",
+      "optionLabel": "A",
+      "optionText": "内心毫无波澜甚至顺势分析：这种考前心理按摩是班主任常规维稳手段，意在释放底子薄的学生的压力。听听就行，我该怎么冲985还是怎么冲。",
+      "dimensionMap": {
+        "A3": 1,
+        "E1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 17,
+      "section": 3,
+      "stem": "考前最后一天，班主任站在铁皮讲台上，突然一改平时的凶神恶煞，用极其煽情、甚至带点颤抖的语调说出那句：“就算你们最后只考上专科，我也一样以你们为荣……”这本该是催泪时刻，你却觉得：",
+      "optionLabel": "B",
+      "optionText": "血压瞬间拉满，心脏狂跳：“什么叫就算考上专科？他刚才是不是特意看了我一眼？他这话怎么听都像是在提前给我做心理建设吧？！”",
+      "dimensionMap": {
+        "A3": 2,
+        "E1": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 17,
+      "section": 3,
+      "stem": "考前最后一天，班主任站在铁皮讲台上，突然一改平时的凶神恶煞，用极其煽情、甚至带点颤抖的语调说出那句：“就算你们最后只考上专科，我也一样以你们为荣……”这本该是催泪时刻，你却觉得：",
+      "optionLabel": "C",
+      "optionText": "深谙这是高中独有的青春戏份，积极配合这极其诡异的感人氛围挤出两滴硬邦邦的眼泪。觉得必须陪着老班走完这个流程，自己的“高三体验卡”才算圆满。",
+      "dimensionMap": {
+        "A3": 3,
+        "E1": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 17,
+      "section": 3,
+      "stem": "考前最后一天，班主任站在铁皮讲台上，突然一改平时的凶神恶煞，用极其煽情、甚至带点颤抖的语调说出那句：“就算你们最后只考上专科，我也一样以你们为荣……”这本该是催泪时刻，你却觉得：",
+      "optionLabel": "D",
+      "optionText": "根本就没把这段话听进脑子，脑海里正在极其精细地规划：“考完第一天下午到底是先去网吧打两把英雄联盟，还是先去小吃街撸三十串大腰子”。",
+      "dimensionMap": {
+        "A3": 4,
+        "E1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 18,
+      "section": 3,
+      "stem": "志愿填报系统页面还有不到一个小时就要锁定关闭。你的分数完美卡在一个极其恶心的地方：冲一下好学校可能掉档没书读，选个保底的又气不过。鼠标悬在那个录取概率只有 30% 的梦想院校上，你会：",
+      "optionLabel": "A",
+      "optionText": "花十分钟搭建了一个收益风险评估矩阵，计算了调剂后果的容忍期望值后，极其冷静地把梦中情校清出了志愿表，填上包稳的实用专业。面子不值钱，以后好找工作才是唯一的硬通货。",
+      "dimensionMap": {
+        "S2": 4,
+        "Ac1": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 18,
+      "section": 3,
+      "stem": "志愿填报系统页面还有不到一个小时就要锁定关闭。你的分数完美卡在一个极其恶心的地方：冲一下好学校可能掉档没书读，选个保底的又气不过。鼠标悬在那个录取概率只有 30% 的梦想院校上，你会：",
+      "optionLabel": "B",
+      "optionText": "手心疯狂出汗把鼠标都握出了泥。鼠标悬在提交键上，脑海里全是“掉档后没书读被亲戚嘲笑只能去电子厂打螺丝”的悲惨幻象，眼泪滴在键盘上。",
+      "dimensionMap": {
+        "S2": 2,
+        "Ac1": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 18,
+      "section": 3,
+      "stem": "志愿填报系统页面还有不到一个小时就要锁定关闭。你的分数完美卡在一个极其恶心的地方：冲一下好学校可能掉档没书读，选个保底的又气不过。鼠标悬在那个录取概率只有 30% 的梦想院校上，你会：",
+      "optionLabel": "C",
+      "optionText": "死死盯着那个梦想院校的名字，觉得这不仅仅是一个大学，这是自己十八年青春最后的尊严之战！手指悬在半空，脑子里回荡着各种赌神电影的BGM，觉得自己是个孤注一掷的亡命徒。",
+      "dimensionMap": {
+        "S2": 3,
+        "Ac1": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 18,
+      "section": 3,
+      "stem": "志愿填报系统页面还有不到一个小时就要锁定关闭。你的分数完美卡在一个极其恶心的地方：冲一下好学校可能掉档没书读，选个保底的又气不过。鼠标悬在那个录取概率只有 30% 的梦想院校上，你会：",
+      "optionLabel": "D",
+      "optionText": "对着电脑翻了个巨大的白眼：“算求了，哪个城市的美食多就去哪。”直接以“大学旁边有没有海底捞、茶颜悦色和好网吧”为唯一标准，光速提交系统然后下楼买可乐。",
+      "dimensionMap": {
+        "S2": 1,
+        "Ac1": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 19,
+      "section": 3,
+      "stem": "高考彻底结束，你回到教室清理那座曾经堆得比人还高的书山。看着那些你曾恨不得烧掉，却又写满密密麻麻笔记的五三和模拟卷，你的操作是：",
+      "optionLabel": "A",
+      "optionText": "头脑异常清晰，把能论斤卖的废纸用麻绳打包变现，留下两本空白真题送人。对于完成了历史使命的碳水化合物，最大的尊重就是送它们进造纸厂。",
+      "dimensionMap": {
+        "E2": 1,
+        "S3": 3
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 19,
+      "section": 3,
+      "stem": "高考彻底结束，你回到教室清理那座曾经堆得比人还高的书山。看着那些你曾恨不得烧掉，却又写满密密麻麻笔记的五三和模拟卷，你的操作是：",
+      "optionLabel": "B",
+      "optionText": "坐在那堆卷子中间突然崩溃反思：“这本五三我竟然有一半都没做完！如果我之前多做一套，这次理综是不是就能多考二十分？”陷入不可自拔的考后延时性绝望。",
+      "dimensionMap": {
+        "E2": 3,
+        "S3": 2
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 19,
+      "section": 3,
+      "stem": "高考彻底结束，你回到教室清理那座曾经堆得比人还高的书山。看着那些你曾恨不得烧掉，却又写满密密麻麻笔记的五三和模拟卷，你的操作是：",
+      "optionLabel": "C",
+      "optionText": "拿着极粗的马克笔在最高的一摞试卷上写下霸气侧漏的“青春无悔，封印于此”，然后强迫室友给自己和这堆废纸拍了大概八十张专门用于发朋友圈的战损版写真。",
+      "dimensionMap": {
+        "E2": 2,
+        "S3": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 19,
+      "section": 3,
+      "stem": "高考彻底结束，你回到教室清理那座曾经堆得比人还高的书山。看着那些你曾恨不得烧掉，却又写满密密麻麻笔记的五三和模拟卷，你的操作是：",
+      "optionLabel": "D",
+      "optionText": "拿出一个旧铁盆，当着全宿舍的面把最恨的那几套理综模拟卷挨张撕碎点燃，举行一场极其神圣的焚烧祭祀，甚至还用手机在旁边配了个吹唢呐的音效。",
+      "dimensionMap": {
+        "E2": 4,
+        "S3": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    },
+    {
+      "questionId": 20,
+      "section": 3,
+      "stem": "历经地狱级的高三磨难，你终于拖着重达二十斤的行李箱站在这所大学的校门前。看着略显破败的迎新帐篷，或者听着周围学长学姐聊的竟然全是怎么抢图书馆座位和绩点内卷，那句“考上大学就轻松了”的谎言在你脑子里轰然碎裂。你会：",
+      "optionLabel": "A",
+      "optionText": "错愕感只有三秒。这三秒内迅速调整预期锚点，掏出手机进入本校贴吧，开始精准搜索“哪些选修课老师给分高、哪几个比赛水金牌、如何低成本刷满GPA”。",
+      "dimensionMap": {
+        "S1": 3,
+        "So2": 3
+      },
+      "selectedId": "solo_anxiety",
+      "selectedName": "焦虑，但没有波及其他人",
+      "customText": ""
+    },
+    {
+      "questionId": 20,
+      "section": 3,
+      "stem": "历经地狱级的高三磨难，你终于拖着重达二十斤的行李箱站在这所大学的校门前。看着略显破败的迎新帐篷，或者听着周围学长学姐聊的竟然全是怎么抢图书馆座位和绩点内卷，那句“考上大学就轻松了”的谎言在你脑子里轰然碎裂。你会：",
+      "optionLabel": "B",
+      "optionText": "看着那几栋破得毫无生活期待的宿舍楼，再听着周围人聊抢座位和卷绩点，脑子里只剩一个念头：我不会只是把高三从老家搬到大学来了吧？",
+      "dimensionMap": {
+        "S1": 2,
+        "So2": 2
+      },
+      "selectedId": "jinghua",
+      "selectedName": "京华大学",
+      "customText": ""
+    },
+    {
+      "questionId": 20,
+      "section": 3,
+      "stem": "历经地狱级的高三磨难，你终于拖着重达二十斤的行李箱站在这所大学的校门前。看着略显破败的迎新帐篷，或者听着周围学长学姐聊的竟然全是怎么抢图书馆座位和绩点内卷，那句“考上大学就轻松了”的谎言在你脑子里轰然碎裂。你会：",
+      "optionLabel": "C",
+      "optionText": "凄凉地冷笑了一声，抬头看着天边的一抹残阳，心里默念：“呵，这座围城，终究还是困住了我这只原本可以翱翔九天的雏鹰。既然如此，就在泥潭里杀出一条血路吧！”",
+      "dimensionMap": {
+        "S1": 1,
+        "So2": 1
+      },
+      "selectedId": "drama",
+      "selectedName": "戏精",
+      "customText": ""
+    },
+    {
+      "questionId": 20,
+      "section": 3,
+      "stem": "历经地狱级的高三磨难，你终于拖着重达二十斤的行李箱站在这所大学的校门前。看着略显破败的迎新帐篷，或者听着周围学长学姐聊的竟然全是怎么抢图书馆座位和绩点内卷，那句“考上大学就轻松了”的谎言在你脑子里轰然碎裂。你会：",
+      "optionLabel": "D",
+      "optionText": "直接把行李箱扔在路边花坛旁，转身走向校门口的烤串摊。卷是不可能卷的，大一第一天的首要任务，是确立自己在这个群体中“摆烂祖师爷”的稳固人设。",
+      "dimensionMap": {
+        "S1": 4,
+        "So2": 4
+      },
+      "selectedId": "sitanfo",
+      "selectedName": "斯坦佛大学",
+      "customText": ""
+    }
+  ]
+}
