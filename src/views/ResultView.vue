@@ -211,6 +211,41 @@ onMounted(() => {
   }
 })
 
+function getPosterErrorMessage(error, context = {}) {
+  const name = error?.name || ''
+  const message = String(error?.message || error || '')
+
+  if (context.stage === 'element-missing') {
+    return '海报组件尚未加载完成，请稍后重试。'
+  }
+
+  if (context.stage === 'invalid-size') {
+    return '海报尺寸读取失败，可能是页面还没渲染完成，请稍后重试。'
+  }
+
+  if (name === 'AbortError') {
+    return '你已取消系统分享。'
+  }
+
+  if (context.stage === 'share') {
+    return `系统分享失败：${message || '当前浏览器暂不支持文件分享'}。已为你回退到图片预览。`
+  }
+
+  if (/tainted canvas|insecure operation|cross-origin/i.test(message)) {
+    return '海报中包含跨域资源，浏览器阻止了截图生成。'
+  }
+
+  if (/canvas|memory|allocate|size/i.test(message)) {
+    return '海报生成时画布分配失败，可能是当前手机内存不足，请关闭后台后重试。'
+  }
+
+  if (/network|fetch/i.test(message)) {
+    return '海报图片转换失败，网络或浏览器环境异常，请稍后重试。'
+  }
+
+  return `海报生成失败：${message || '未知错误'}。`
+}
+
 async function sharePoster() {
   posterVisible.value = true
   await nextTick()
@@ -223,7 +258,12 @@ async function sharePoster() {
   try {
     const el = posterRef.value?.$el
     if (!el) {
-      alert('海报组件加载失败，请重试')
+      alert(getPosterErrorMessage(new Error('poster element missing'), { stage: 'element-missing' }))
+      return
+    }
+
+    if (!el.offsetWidth || !el.offsetHeight) {
+      alert(getPosterErrorMessage(new Error(`invalid poster size: ${el.offsetWidth}x${el.offsetHeight}`), { stage: 'invalid-size' }))
       return
     }
 
@@ -272,7 +312,12 @@ async function sharePoster() {
           return
         }
       } catch (shareErr) {
-        if (shareErr.name === 'AbortError') return
+        if (shareErr.name === 'AbortError') {
+          alert(getPosterErrorMessage(shareErr))
+          return
+        }
+        console.warn('系统分享失败，回退到图片预览', shareErr)
+        alert(getPosterErrorMessage(shareErr, { stage: 'share' }))
         // 分享 API 不可用，回退到显示图片
       }
     }
@@ -280,7 +325,7 @@ async function sharePoster() {
     posterSrc.value = dataUrl
   } catch (e) {
     console.error('海报生成失败', e)
-    alert('海报生成失败，请尝试截图分享')
+    alert(getPosterErrorMessage(e))
   } finally {
     posterVisible.value = false
   }
