@@ -64,7 +64,7 @@
 
     <!-- 底部细则 -->
     <div class="notice__fine-print notice-stagger" style="--stagger: 4">
-      ※ 此通知书由命理综合评价中心出具，请妥善保管
+      ※ 此通知书由人格综合评价中心出具，请妥善保管
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <div class="exam-header">
     <div class="exam-header__secret">绝密 ★ 启用前</div>
     <div class="exam-header__year">2026 年普通高等学校招生全国统一考试</div>
-    <h1 class="exam-header__title">命 理 综 合</h1>
+    <h1 class="exam-header__title">人 格 综 合（全国 {{ examLetter }} 卷）</h1>
     <div v-if="showInfo" class="exam-info">
       <div class="exam-info__row">
         <span class="exam-info__label">姓名：</span>
@@ -28,6 +28,11 @@
 </template>
 
 <script setup>
+import { useExamStore } from '../stores/exam'
+
+const store = useExamStore()
+const examLetter = store.examLetter
+
 const props = defineProps({
   showInfo: { type: Boolean, default: false },
   editable: { type: Boolean, default: false },

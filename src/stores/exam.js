@@ -33,12 +33,13 @@ export const useExamStore = defineStore('exam', () => {
   const currentIndex = ref(0)
   const playerName = ref('')
   const ticketNumber = ref(generateTicket())
+  const examLetter = ref(['M', 'B', 'T', 'I'][Math.floor(Math.random() * 4)])
 
   // 生成 13 位准考证号: YY + AAAA + SS + CCC + NN
   function generateTicket() {
     const yy = '26'
     const area = String(Math.floor(1000 + Math.random() * 9000))    // 4 位考区
-    const subj = '99'                                                 // 99 = 命理综合
+    const subj = '99'                                                 // 99 = 人格综合
     const room = String(Math.floor(100 + Math.random() * 900))       // 3 位考场
     const seat = String(Math.floor(1 + Math.random() * 30)).padStart(2, '0') // 01-30
     return yy + area + subj + room + seat
@@ -265,7 +266,7 @@ export const useExamStore = defineStore('exam', () => {
 
   return {
     view, questions, gateQuestions, results,
-    answers, gateAnswers, currentIndex, playerName, ticketNumber,
+    answers, gateAnswers, currentIndex, playerName, ticketNumber, examLetter,
     runSequence, currentItem, totalCount, isFinished, progress, answeredCount,
     isFallback, envelopeSeen,
     getQuestionObj, init, answer, answerQuestion, startExam, restart, triggerFallback, calcDimensionTotal

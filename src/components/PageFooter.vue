@@ -1,10 +1,10 @@
 <template>
   <div class="page-footer">
     <template v-if="answered !== undefined">
-      命理综合　已完成 {{ answered }}/{{ total }}
+      人格综合　已完成 {{ answered }}/{{ total }}
     </template>
     <template v-else>
-      命理综合　第 {{ page }} 页（共 {{ total }} 页）
+      人格综合　第 {{ page }} 页（共 {{ total }} 页）
     </template>
   </div>
 </template>
