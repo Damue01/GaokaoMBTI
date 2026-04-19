@@ -1,4 +1,5 @@
 <template>
+  <Analytics />
   <SpeedInsights />
   <ExamView v-if="store.view === 'start' || store.view === 'exam'" />
   <ResultView v-else-if="store.view === 'result'" />
@@ -6,6 +7,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
+import { Analytics } from '@vercel/analytics/vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 import { useExamStore } from './stores/exam'
 import ExamView from './views/ExamView.vue'
