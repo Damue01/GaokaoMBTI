@@ -225,15 +225,22 @@ function buildShareUrl(source) {
   return `${base}?${params.toString()}`
 }
 
-function handleShare() {
+const SHARE_TITLE = '2026年普通高等学校招生全国统一考试 · 人格综合（全国卷）'
+
+function buildShareText() {
   const schoolName = resultData.value?.result?.name || '某高等学府'
-  const text = `绝密★启用前｜本人已被「${schoolName}」预录取，特此分享《2026年普通高等学校招生全国统一考试·人格综合》试卷，供同场考生参阅。`
+  // 与 og:description 口径对齐的公告式文案，保留"预录取"仪式感
+  return `绝密★启用前｜本人已被「${schoolName}」预录取｜共20题·满分100分·考试时间不限｜非教育部考试中心命制`
+}
+
+function handleShare() {
+  const text = buildShareText()
 
   // navigator.share 必须在用户点击的同步调用栈里，不能有 await
   const nativeUrl = buildShareUrl('native')
   if (navigator.share && navigator.canShare?.({ text, url: nativeUrl })) {
     navigator.share({
-      title: '2026年普通高等学校招生全国统一考试 · 人格综合（全国卷）',
+      title: SHARE_TITLE,
       text,
       url: nativeUrl
     }).catch((err) => {
