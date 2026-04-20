@@ -3,6 +3,12 @@ import { ref, computed, watch } from 'vue'
 
 const STORAGE_KEY = 'gaokao-exam-state'
 
+// BUG 抽签命中率（8%）
+const BUG_LOTTERY_RATE = 0.08
+
+// 故障字符池：与 BUG 题题干保持同一视觉语言
+export const BUG_CHAR_POOL = ['▓', '█', '▒', '░']
+
 function saveState(state) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
@@ -35,6 +41,9 @@ export const useExamStore = defineStore('exam', () => {
   const ticketNumber = ref(generateTicket())
   const examLetter = ref(['M', 'B', 'T', 'I'][Math.floor(Math.random() * 4)])
 
+  // BUG 抽签结果：与准考证号绑定，进入首页时就抽；restart 时随准考证号一起重抽
+  const bugLotteryWon = ref(Math.random() < BUG_LOTTERY_RATE)
+
   // 生成 13 位准考证号: YY + AAAA + SS + CCC + NN
   function generateTicket() {
     const yy = '26'
@@ -50,9 +59,6 @@ export const useExamStore = defineStore('exam', () => {
 
   // 门控 G1 (BUG题) 是否已插入
   const g1Inserted = ref(false)
-
-  // BUG 抽签结果：开考时 1% 概率抽中，抽中后会在 Q15 后插入 BUG 题
-  const bugLotteryWon = ref(false)
 
   // 首次答题的时间戳（毫秒）。用于计算平均答题速度（水豚触发）
   const firstAnswerAt = ref(0)
@@ -355,10 +361,8 @@ export const useExamStore = defineStore('exam', () => {
     return total
   }
 
-  // 开始考试（此刻 5% 概率抽中 BUG 彩票）
+  // 开始考试（抽签已在准考证号生成时完成，这里只切换视图）
   function startExam() {
-    // 只在第一次开考时抽签（刷新恢复时不重抽）
-    bugLotteryWon.value = Math.random() < 0.05
     view.value = 'exam'
   }
 
@@ -395,7 +399,8 @@ export const useExamStore = defineStore('exam', () => {
     ticketNumber.value = generateTicket()
     currentIndex.value = 0
     g1Inserted.value = false
-    bugLotteryWon.value = false
+    // 准考证号重生 → BUG 抽签同步重抽
+    bugLotteryWon.value = Math.random() < BUG_LOTTERY_RATE
     firstAnswerAt.value = 0
     changeCount.value = 0
     isFallback.value = false

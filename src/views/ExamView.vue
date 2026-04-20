@@ -9,10 +9,10 @@
 
     <div class="exam-notice">
       <p class="exam-notice__title">注意事项：</p>
-      <p class="exam-notice__item"><span class="exam-notice__num">1.</span> 答卷前，考生务必将自己的姓名、准考证号填写在答题卡上。用 2B 铅笔将试卷类型填涂在答题卡相应位置上，将条形码横贴在答题卡右上角"条形码粘贴处"。</p>
-      <p class="exam-notice__item"><span class="exam-notice__num">2.</span> 作答选择题时，选出每小题答案后，用 2B 铅笔在答题卡上对应题目选项的答案信息点涂黑；如需改动，用橡皮擦干净后，再选涂其他答案。答案不能答在试卷上。写在试卷、草稿纸和答题卡上的非答题区域均无效。</p>
-      <p class="exam-notice__item"><span class="exam-notice__num">3.</span> 非选择题必须用黑色字迹的钢笔或签字笔作答，答案必须写在答题卡各题目指定区域内相应位置上；如需改动，先划掉原来的答案，然后再写上新答案；不准使用铅笔和涂改液。不按以上要求作答无效。</p>
-      <p class="exam-notice__item"><span class="exam-notice__num">4.</span> 考生必须保持答题卡的整洁。考试结束后，将试卷和答题卡一并交回。</p>
+      <p v-for="(html, i) in noticeItems" :key="i" class="exam-notice__item">
+        <span class="exam-notice__num">{{ i + 1 }}.</span>
+        <span v-html="html"></span>
+      </p>
     </div>
 
     <div v-if="store.view === 'start'" class="exam-action-block">
@@ -45,18 +45,46 @@
 </template>
 
 <script setup>
-import { ref, nextTick, onUnmounted, watch } from 'vue'
+import { ref, computed, nextTick, onUnmounted, watch } from 'vue'
 import { useExamStore } from '../stores/exam'
 import { useSound } from '../composables/useSound'
 import ExamHeader from '../components/ExamHeader.vue'
 import QuestionCard from '../components/QuestionCard.vue'
 import PageFooter from '../components/PageFooter.vue'
+import { glitchDistributed } from '../composables/useGlitch'
 
 const store = useExamStore()
 const { play } = useSound()
 
 const examContentRef = ref(null)
 const playerNameLocal = ref('')
+
+// 注意事项原文（与模板里 4 条对应）
+const NOTICE_RAW = [
+  '答卷前，考生务必将自己的姓名、准考证号填写在答题卡上。用 2B 铅笔将试卷类型填涂在答题卡相应位置上，将条形码横贴在答题卡右上角"条形码粘贴处"。',
+  '作答选择题时，选出每小题答案后，用 2B 铅笔在答题卡上对应题目选项的答案信息点涂黑；如需改动，用橡皮擦干净后，再选涂其他答案。答案不能答在试卷上。写在试卷、草稿纸和答题卡上的非答题区域均无效。',
+  '非选择题必须用黑色字迹的钢笔或签字笔作答，答案必须写在答题卡各题目指定区域内相应位置上；如需改动，先划掉原来的答案，然后再写上新答案；不准使用铅笔和涂改液。不按以上要求作答无效。',
+  '考生必须保持答题卡的整洁。考试结束后，将试卷和答题卡一并交回。'
+]
+
+// 仅在首页（未开考）且抽中 BUG 时把 4 条合起来挑 2~3 处注入方块；
+// 进入考试后自动恢复为原文
+const noticeItems = computed(() => {
+  if (store.view !== 'start' || !store.bugLotteryWon) {
+    return NOTICE_RAW.map(escapeHtml)
+  }
+  const count = 2 + Math.floor(Math.random() * 2) // 2 或 3
+  return glitchDistributed(NOTICE_RAW, count)
+})
+
+function escapeHtml(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
 
 /* ---- 空闲 3 分钟触发 fallback ---- */
 const IDLE_TIMEOUT = 3 * 60 * 1000 // 3 分钟

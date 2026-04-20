@@ -60,6 +60,13 @@
   font-family: var(--font-song);
 }
 
+/* BUG 抽签命中后，首页里个别汉字会被替换成方块字符（▓█▒░）；
+   保持父元素字体/颜色，让四种字符的浓淡层次自然呈现，不做动画。 */
+.glitch-char {
+  font-family: inherit;
+  color: inherit;
+}
+
 /* 注意事项 */
 .exam-notice {
   padding: 0;
