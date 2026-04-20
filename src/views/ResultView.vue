@@ -215,24 +215,38 @@ function showToast(msg, duration = 2000) {
   setTimeout(() => { toastMsg.value = '' }, duration)
 }
 
+function buildShareUrl(source) {
+  const base = 'https://www.gaokaombti.com/'
+  const params = new URLSearchParams({
+    utm_source: source,
+    utm_medium: source === 'poster' ? 'qrcode' : 'share',
+    utm_campaign: 'result'
+  })
+  return `${base}?${params.toString()}`
+}
+
 function handleShare() {
-  const schoolName = resultData.value?.result?.name || '神秘大学'
-  const text = `我被「${schoolName}」录取了！要来测测你适合上什么大学吗！ 🎓`
-  const url = location.href.split('?')[0].split('#')[0]
+  const schoolName = resultData.value?.result?.name || '某高等学府'
+  const text = `绝密★启用前｜本人已被「${schoolName}」预录取，特此分享《2026年普通高等学校招生全国统一考试·人格综合》试卷，供同场考生参阅。`
 
   // navigator.share 必须在用户点击的同步调用栈里，不能有 await
-  if (navigator.share && navigator.canShare?.({ text, url })) {
-    navigator.share({ title: '2026高考人格综合测试', text, url }).catch((err) => {
-      if (err.name !== 'AbortError') copyFallback(text, url)
+  const nativeUrl = buildShareUrl('native')
+  if (navigator.share && navigator.canShare?.({ text, url: nativeUrl })) {
+    navigator.share({
+      title: '2026年普通高等学校招生全国统一考试 · 人格综合（全国卷）',
+      text,
+      url: nativeUrl
+    }).catch((err) => {
+      if (err.name !== 'AbortError') copyFallback(text)
     })
     return
   }
 
-  copyFallback(text, url)
+  copyFallback(text)
 }
 
-async function copyFallback(text, url) {
-  const content = `${text}\n${url}`
+async function copyFallback(text) {
+  const content = `${text}\n${buildShareUrl('copy')}`
   try {
     await navigator.clipboard.writeText(content)
     showToast('已复制分享文案到剪贴板')
