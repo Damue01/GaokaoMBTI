@@ -38,7 +38,7 @@
 >
 > **2.** 作答选择题时，选出每小题答案后，系统将在答题卡上对应题目选项的答案信息点涂黑；如需改动，点击其他选项即可覆盖，答案不能答在 `console` 上。
 >
-> **3.** 考试结束后，系统将自动生成《录取通知书》，含印章、水印、雷达图与分享海报，请考生注意保存。
+> **3.** 考试结束后，系统将自动生成《录取通知书》，含印章、水印与分享海报，请考生注意保存。
 >
 > **4.** 考生必须保持网络连接。不按以上要求作答无效。
 
@@ -52,7 +52,7 @@
 
 **3.** 底部答题卡——实时反馈答题进度，气泡高亮已作答题目。（ &ensp;）
 
-**4.** 录取通知书——信封拆封动画 → 通知书展开，含印章、水印、雷达图、社交标签。（ &ensp;）
+**4.** 录取通知书——信封拆封动画 → 通知书展开，含印章、水印、社交标签。（ &ensp;）
 
 **5.** 分享海报生成——使用 html2canvas 将通知书渲染为图片，附带二维码，一键保存。（ &ensp;）
 
@@ -129,23 +129,22 @@ npm run build
 ```
 src/
 ├── views/
-│   ├── ExamView.vue ·············· 试卷首页 + 答题区
+│   ├── ExamView.vue ·············· 开始页 + 答题区（合并了原 StartView）
 │   └── ResultView.vue ············ 信封拆封 + 录取通知书
 ├── components/
-│   ├── ExamHeader.vue ············ 试卷抬头（考生信息 · 密封线）
+│   ├── ExamHeader.vue ············ 试卷抬头（考生信息）
 │   ├── QuestionCard.vue ·········· 题目卡片（手写体 ✗ 动效）
-│   ├── AnswerCard.vue ············ 底部答题卡气泡
 │   ├── ResultNotice.vue ·········· 录取通知书正文
 │   ├── SharePoster.vue ··········· 分享海报（html2canvas）
-│   ├── RadarChart.vue ············ 4 维雷达图
 │   ├── SealStamp.vue ············· 录取印章
-│   └── SealLine.vue ·············· 密封线
+│   └── PageFooter.vue ············ 页脚（页码 / 答题进度）
 ├── composables/
-│   └── useScoring.js ············· 评分引擎（向量匹配 + 门控）
+│   ├── useScoring.js ············· 评分引擎（向量匹配 + 门控）
+│   └── useSound.js ··············· 铅笔音效（WebAudio）
 ├── stores/
 │   └── exam.js ··················· 状态管理 + localStorage 持久化
 ├── styles/ ······················· 纯 CSS 样式系统
-│   ├── base.css ·· paper.css ·· question.css ·· answer-card.css
+│   ├── base.css ·· paper.css ·· question.css
 │   ├── result.css · poster.css · motion.css
 public/
 ├── questions.json ················ 题库（20 常规 + 1 门控）

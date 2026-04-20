@@ -408,7 +408,7 @@ export const useExamStore = defineStore('exam', () => {
     view, questions, gateQuestions, results,
     answers, gateAnswers, currentIndex, playerName, ticketNumber, examLetter,
     runSequence, currentItem, totalCount, isFinished, progress, answeredCount,
-    isFallback, envelopeSeen,
+    isFallback, envelopeSeen, g1Inserted,
     bugLotteryWon, firstAnswerAt, changeCount,
     getQuestionObj, init, answer, answerQuestion, startExam, restart, triggerFallback, calcDimensionTotal,
     toDisplayLabel, isCapybaraTriggered

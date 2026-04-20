@@ -47,11 +47,13 @@
 <script setup>
 import { ref, nextTick, onUnmounted, watch } from 'vue'
 import { useExamStore } from '../stores/exam'
+import { useSound } from '../composables/useSound'
 import ExamHeader from '../components/ExamHeader.vue'
 import QuestionCard from '../components/QuestionCard.vue'
 import PageFooter from '../components/PageFooter.vue'
 
 const store = useExamStore()
+const { play } = useSound()
 
 const examContentRef = ref(null)
 const playerNameLocal = ref('')
@@ -120,6 +122,7 @@ function setCardRef(idx, el) {
 }
 
 function onSelect(item, idx, label) {
+  play('pencil')
   store.answerQuestion(item.id, item.type, label)
 }
 

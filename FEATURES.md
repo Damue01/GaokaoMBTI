@@ -14,9 +14,9 @@
 - **核心代码**：
   - `web/src/stores/exam.js` —— Pinia 状态机（考试流程、答题、门控触发、持久化）
   - `web/src/composables/useScoring.js` —— 评分引擎
-  - `web/src/views/StartView.vue` / `ExamView.vue` / `ResultView.vue` —— 三阶段视图
+  - `web/src/composables/useSound.js` —— 音效加载与播放（铅笔声）
+  - `web/src/views/ExamView.vue` / `ResultView.vue` —— 两阶段视图（ExamView 内部通过 `store.view === 'start' | 'exam'` 切换 “开始答题” 和 “题目列表”）
   - `web/src/components/QuestionCard.vue` —— 题目卡片（普通题 + 门控题 + BUG 题三态）
-  - `web/src/components/RadarChart.vue` —— 结果页 4 维雷达图
 
 ---
 
@@ -376,20 +376,22 @@ normal computeResult（4 所主大学之一）       ← 默认
 ## 11. 视图流程
 
 ```
-StartView（绝密★启用前的封面 + "开始答题"按钮）
-   │ 点击按钮 → startExam() → 5% BUG 抽签
+ExamView 开篇（绝密★启用前的抬头 + 注意事项 + "开始答题"按钮）
+   │ 点击按钮 → startExam()（此时 5% BUG 抽签）
    ▼
-ExamView（滚动式一屏展示所有题）
+ExamView 中篇（滚动式一屏展示所有题）
    │ 答完第 20 道普通题
    │ （或 3 分钟不动 → fallback）
    ▼
 ResultView（录取通知书信封 → 点击拆封 → 通知书正文 + 分享海报）
 ```
 
+> 实现上 `StartView` 已没有单独组件，开篇与中篇都由 `ExamView.vue` 通过 `store.view` 的 `start`/`exam` 状态驱动。`App.vue` 只负责在 `view === 'result'` 时切换到 `ResultView`。
+
 ### 11.1 特殊 UI 点
 
 - **答题括号历史**（QuestionCard 里的"（X）"）记录每次作答的手写字母，若反选则在字母上画个删除线，多次改答会叠出历史。**仅普通题显示**。
-- **雷达图**（ResultView）显示用户 4 维向量 vs 匹配大学 4 维坐标。
+- **铅笔音效**：点击选项时播放 `/sounds/pencil.mp3`（`useSound` composable 管理 WebAudio 上下文与缓存）。
 - **准考证号** + **姓名（可选填）** + **考卷字母**（M/B/T/I 随机）在 ExamHeader 上显示。
 
 ### 11.2 信封与拆封动画
