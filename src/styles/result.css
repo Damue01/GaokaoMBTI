@@ -1,4 +1,4 @@
-/* ===== result.css �?录取通知�?& 雷达�?===== */
+/* ===== result.css · 录取通知书 ===== */
 
 .result-page {
   text-align: center;
@@ -453,51 +453,30 @@
   }
 }
 
-/* === 海报预览模态框 === */
-.poster-modal {
+/* === Toast 提示 === */
+.share-toast {
   position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 20px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-}
-
-.poster-modal__body {
-  max-width: 375px;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.poster-modal__img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 375 / 919;
-  object-fit: contain;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.poster-modal__hint {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  font-size: 14px;
   font-family: var(--font-hei);
-  margin-top: 16px;
-  letter-spacing: 1px;
+  padding: 10px 22px;
+  border-radius: 6px;
+  pointer-events: none;
+  white-space: nowrap;
 }
-
-.poster-modal__close {
-  color: rgba(255, 255, 255, 0.8) !important;
-  margin-top: 12px;
+.toast-enter-active,
+.toast-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.toast-enter-from,
+.toast-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
 }
 
 /* === 社媒引导区 === */

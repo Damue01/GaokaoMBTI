@@ -67,7 +67,7 @@
 
     <!-- 操作按钮（随通知书一起渲染） -->
     <div v-if="noticeVisible" class="result-actions" :class="{ 'extras-fade-in': extrasVisible }">
-      <button class="btn" @click="sharePoster"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 分 享</button>
+      <button class="btn" @click="handleShare"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 分 享</button>
       <button class="btn btn--primary" @click="store.restart()"><span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 再测一次</button>
     </div>
 
@@ -99,42 +99,23 @@
       </div>
     </div>
 
-    <!-- 海报渲染容器（隐藏在视口外） -->
-    <SharePoster
-      v-if="resultData && posterVisible"
-      ref="posterRef"
-      :result="resultData.result"
-      :is-gate="resultData.isGate"
-      :player-name="store.playerName"
-    />
-
-    <!-- 海报预览模态框 -->
-    <div v-if="posterSrc" class="poster-modal" @click.self="posterSrc = null">
-      <div class="poster-modal__body">
-        <img :src="posterSrc" alt="分享海报" class="poster-modal__img" />
-        <p class="poster-modal__hint">长按图片保存到手机，分享给好友</p>
-        <button class="btn poster-modal__close" @click="posterSrc = null">
-          <span class="btn__check">[&#8201;<span class="btn__fill">■</span>&#8201;]</span> 关 闭
-        </button>
-      </div>
-    </div>
+    <!-- 轻量 toast -->
+    <Transition name="toast">
+      <div v-if="toastMsg" class="share-toast">{{ toastMsg }}</div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useExamStore } from '../stores/exam'
 import { computeResult } from '../composables/useScoring'
 import ResultNotice from '../components/ResultNotice.vue'
-import SharePoster from '../components/SharePoster.vue'
-import html2canvas from 'html2canvas'
 
 const store = useExamStore()
 const exportRef = ref(null)
 const resultData = ref(null)
-const posterRef = ref(null)
-const posterVisible = ref(false)
-const posterSrc = ref(null)
+const toastMsg = ref('')
 
 const envelopeVisible = ref(true)
 const envelopeOpening = ref(false)
@@ -229,111 +210,34 @@ onMounted(() => {
   }
 })
 
-function getPosterErrorMessage(error, context = {}) {
-  const name = error?.name || ''
-  const message = String(error?.message || error || '')
-
-  if (context.stage === 'element-missing') {
-    return '海报组件尚未加载完成，请稍后重试。'
-  }
-
-  if (context.stage === 'invalid-size') {
-    return '海报尺寸读取失败，可能是页面还没渲染完成，请稍后重试。'
-  }
-
-  if (name === 'AbortError') {
-    return '你已取消系统分享。'
-  }
-
-  if (context.stage === 'share') {
-    return `系统分享失败：${message || '当前浏览器暂不支持文件分享'}。已为你回退到图片预览。`
-  }
-
-  if (/tainted canvas|insecure operation|cross-origin/i.test(message)) {
-    return '海报中包含跨域资源，浏览器阻止了截图生成。'
-  }
-
-  if (/canvas|memory|allocate|size/i.test(message)) {
-    return '海报生成时画布分配失败，可能是当前手机内存不足，请关闭后台后重试。'
-  }
-
-  if (/network|fetch/i.test(message)) {
-    return '海报图片转换失败，网络或浏览器环境异常，请稍后重试。'
-  }
-
-  return `海报生成失败：${message || '未知错误'}。`
+function showToast(msg, duration = 2000) {
+  toastMsg.value = msg
+  setTimeout(() => { toastMsg.value = '' }, duration)
 }
 
-function canvasToPngUrl(canvas) {
-  return new Promise((resolve, reject) => {
-    if (typeof canvas.toBlob === 'function') {
-      try {
-        canvas.toBlob((blob) => {
-          if (!blob) {
-            reject(new Error('canvas toBlob returned empty result'))
-            return
-          }
-          resolve(URL.createObjectURL(blob))
-        }, 'image/png')
-        return
-      } catch (error) {
-        reject(error)
-        return
-      }
-    }
+function handleShare() {
+  const schoolName = resultData.value?.result?.name || '神秘大学'
+  const text = `我被「${schoolName}」录取了！要来测测你适合上什么大学吗！ 🎓`
+  const url = location.href.split('?')[0].split('#')[0]
 
-    try {
-      resolve(canvas.toDataURL('image/png'))
-    } catch (error) {
-      reject(error)
-    }
-  })
+  // navigator.share 必须在用户点击的同步调用栈里，不能有 await
+  if (navigator.share && navigator.canShare?.({ text, url })) {
+    navigator.share({ title: '2026高考人格综合测试', text, url }).catch((err) => {
+      if (err.name !== 'AbortError') copyFallback(text, url)
+    })
+    return
+  }
+
+  copyFallback(text, url)
 }
 
-async function sharePoster() {
-  posterVisible.value = true
-  await nextTick()
-
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
-  // 等待 QR code 和字体渲染完成，移动端多等一些
-  await new Promise(r => setTimeout(r, isMobile ? 1200 : 600))
-
+async function copyFallback(text, url) {
+  const content = `${text}\n${url}`
   try {
-    const el = posterRef.value?.$el
-    if (!el) {
-      alert(getPosterErrorMessage(new Error('poster element missing'), { stage: 'element-missing' }))
-      return
-    }
-
-    if (!el.offsetWidth || !el.offsetHeight) {
-      alert(getPosterErrorMessage(new Error(`invalid poster size: ${el.offsetWidth}x${el.offsetHeight}`), { stage: 'invalid-size' }))
-      return
-    }
-
-    let canvas
-    const baseOpts = {
-      backgroundColor: '#ffffff',
-      useCORS: true,
-      allowTaint: true,
-      logging: false,
-      width: el.offsetWidth,
-      height: el.offsetHeight,
-    }
-
-    try {
-      canvas = await html2canvas(el, { ...baseOpts, scale: isMobile ? 1.5 : 2 })
-    } catch (firstErr) {
-      console.warn('html2canvas 首次失败，降级重试', firstErr)
-      canvas = await html2canvas(el, { ...baseOpts, scale: 1 })
-    }
-
-    posterSrc.value = await canvasToPngUrl(canvas)
-  } catch (e) {
-    console.error('海报生成失败', e)
-    alert(getPosterErrorMessage(e))
-  } finally {
-    posterVisible.value = false
+    await navigator.clipboard.writeText(content)
+    showToast('已复制分享文案到剪贴板')
+  } catch {
+    showToast('复制失败，请手动复制链接分享')
   }
 }
 </script>

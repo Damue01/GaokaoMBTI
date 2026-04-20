@@ -11,9 +11,7 @@
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "html2canvas": "^1.4.1",
     "pinia": "^2.1.0",
-    "qrcode": "^1.5.4",
     "vue": "^3.4.0",
     "vue-router": "^4.6.4"
   },

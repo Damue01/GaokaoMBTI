@@ -5,9 +5,7 @@ import App from './App.vue'
 import './styles/base.css'
 import './styles/paper.css'
 import './styles/question.css'
-import './styles/answer-card.css'
 import './styles/result.css'
-import './styles/poster.css'
 import './styles/motion.css'
 
 const app = createApp(App)
